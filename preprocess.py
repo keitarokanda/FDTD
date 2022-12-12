@@ -41,13 +41,9 @@ class Preprocess():
             sys.exit()
 
         self.mt = mt
-
         self.mfft = mfft
-
         self.sampint = mt//mfft
-
         self.extrapol = extrapol        
-
         self.omega0 = 2.0* math.pi* self.cc/ lambda0
 
             # center angular frequency [1/s]
