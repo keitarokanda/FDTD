@@ -158,13 +158,11 @@ class Preprocess():
             # total number of cells in z direction
 
         self.mz1 = mpml  # start point of calculation voluum
-
         self.mz2 = self.mz1 + self.mz + msf*2
 
             # end point of calculation voluum
 
         self.moz1 = self.mz1 + msf  # boundary of objec space
-
         self.moz2 = self.mz2 - msf  # boundary of objec space
 
         
