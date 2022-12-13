@@ -66,13 +66,9 @@ class Preprocess():
             self._set_dipoles(dipoles)
 
         self._set_detectors(detectors)
-
         self._set_materials(lambda0)
-
         self._set_objects(objs)
-
         self._devparam()
-
         self._cpmlparam(mpml, kappamax, amax, mpow)
 
 
