@@ -57,11 +57,8 @@ class Preprocess():
             mpml, msf)
 
         self._set_param(courantfac)
-
         self._create_arrays(mpml)
-
         self._set_fieldmon(fieldmons)
-
         self._set_epsmons(epsmons)
 
         if self.source == 'dipole':
