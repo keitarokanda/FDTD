@@ -71,18 +71,12 @@ class Preprocess():
 
 
 
+#----物理定数の定義？----
     def _constants(self):
-
-        self.cc = 2.99792458e8  # the speed of light in vacuum [m/s]
-
+        self.cc = 2.99792458e8  #新空中の光速[m/s]
         self.mu0 = 4.0* math.pi*1.0e-7  # permeability of free space [H/m]
-
-        self.eps0 = 1.0 / (self.cc*self.cc*self.mu0)
-
-            # permittivity of free space [F/m]
-
-        self.zz0 = math.sqrt(self.mu0/self.eps0)  # impedance of vacuum
-
+        self.eps0 = 1.0 / (self.cc*self.cc*self.mu0) #真空の誘電率[F/m]
+        self.zz0 = math.sqrt(self.mu0/self.eps0)  #真空のインピーダンス
 
 
     def _setgrid(self, regionx, regiony, regionz, \
