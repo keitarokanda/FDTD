@@ -51,10 +51,8 @@ class Preprocess():
         self.mfft2 = self.mfft* self.extrapol
 
         
-
-        self._setgrid(regionx, regiony, regionz, dxtarget, dytarget, dztarget, \
-
-            mpml, msf)
+#----gridの定義？---
+        self._setgrid(regionx, regiony, regionz, dxtarget, dytarget, dztarget,mpml, msf)
 
         self._set_param(courantfac)
         self._create_arrays(mpml)
