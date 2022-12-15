@@ -914,61 +914,42 @@ class Preprocess():
 
 
 
+#========PMLパラメータのセッティング========
     def _cpmlparam(self, mpml, kappamax, amax, mpow):
 
         """ parameter for CPML """
 
-    
 
         self.ckex = np.zeros(self.mxx+1)
-
         self.ckey = np.zeros(self.myy+1)
-
         self.ckez = np.zeros(self.mzz+1)
 
         self.ckhx1 = np.zeros(self.mxx+1)
-
         self.ckhy1 = np.zeros(self.myy+1)
-
         self.ckhz1 = np.zeros(self.mzz+1)
 
-        
 
         self.cbxe = np.zeros(mpml+1)
-
         self.cbye = np.zeros(mpml+1)
-
         self.cbze = np.zeros(mpml+1)
 
         self.cbxh = np.zeros(mpml)
-
         self.cbyh = np.zeros(mpml)
-
         self.cbzh = np.zeros(mpml)
 
-        
 
         self.ccxe = np.zeros(mpml+1)
-
         self.ccye = np.zeros(mpml+1)
-
         self.ccze = np.zeros(mpml+1)
 
         self.ccxh = np.zeros(mpml)
-
         self.ccyh = np.zeros(mpml)
-
         self.cczh = np.zeros(mpml)
 
-        
 
-        # x direction
-
-        
-
+#----x方向----
         sigmamax = -(mpow+1)*self.eps0*self.cc*math.log(1.0e-8) / (2.0*mpml*self.dx)
 
-        
 
         for ix in range(mpml+ 1):
 
@@ -979,12 +960,9 @@ class Preprocess():
             alpha = amax* ix/mpml
 
             self.ckex[ix] = 1.0/kappa/self.dx
-
             self.cbxe[ix] = math.exp(-(alpha+ sig/ kappa)*(self.dt/self.eps0))
-
             self.ccxe[ix] = -(1.0-self.cbxe[ix])*(sig/kappa) / (sig+alpha*kappa)/self.dx
 
-        
 
         for ix in range(mpml):
 
@@ -995,26 +973,18 @@ class Preprocess():
             alpha = amax*(ix+ 0.5)/mpml
 
             self.ckhx1[ix] = self.chx0/kappa
-
             self.cbxh[ix] = math.exp(-(alpha+sig/kappa)*(self.dt/self.eps0))
-
             self.ccxh[ix] = -(1.0-self.cbxh[ix])* (sig/kappa) / (sig+alpha* kappa)/self.dx
 
-        
 
         self.ckex[self.mx2:self.mxx+1] = self.ckex[mpml::-1]
-
         self.ckhx1[self.mx2:self.mxx] = self.ckhx1[mpml-1::-1]
 
-        
 
         self.ckex[self.mx1+1:self.mx2] = 1.0/self.dx
-
         self.ckhx1[self.mx1:self.mx2] = self.chx0
 
-        
-
-        # y direction
+#----y方向----
 
         
 
