@@ -35,15 +35,12 @@ class Fdtd(Preprocess):
 
             self.sweep_boundary_e() 
 
-            # E-field source injection
-
+#----電場源のセッティング----
             if self.source == 'plane':
-
                 self.normalinc_p_e(jt)
-
             else:
-
                 self.dipole_source(jt)
+
 
             # auxiary E-field update
 
@@ -88,7 +85,7 @@ class Fdtd(Preprocess):
         self.detect_spectra()
 
 
-
+#----双極子波源の設定----
     def dipole_source(self, jt):
 
         """ Dipole source """
