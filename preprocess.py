@@ -47,10 +47,8 @@ class Preprocess():
         self.sampint = mt//mfft
 #----スペクトル計算の0充填をサンプリング数の何倍行うか----
         self.extrapol = extrapol        
-
+#----中心各周波数の計算：ω=2πf----
         self.omega0 = 2.0* math.pi* self.cc/ lambda0
-
-            # center angular frequency [1/s]
 
         self.mfft2 = self.mfft* self.extrapol
 
@@ -66,8 +64,10 @@ class Preprocess():
 #----保存する座標軸に垂直な断面の媒質の分布の位置を指定----
         self._set_epsmons(epsmons)
 
+
         if self.source == 'dipole':
             self._set_dipoles(dipoles)
+
 
 #----時間発展波形及びスペクトルを保存する電場/磁場、及びその位置を指定----
         self._set_detectors(detectors)
@@ -96,6 +96,7 @@ class Preprocess():
         self.my = round(regiony/dytarget)
         self.mz = round(regionz/dztarget)
 
+#----セルの大きさ----
         self.dx = regionx/self.mx 
         self.dy = regiony/self.my
         self.dz = regionz/self.mz
@@ -112,37 +113,33 @@ class Preprocess():
             msf= msf
 
 
-#----計算空間のセッティング？----
+#----計算空間のセッティング----
+#mx1→mx0のこと、mx2→mx1のこと？添字変わってる？
+
+#----散乱場の始まりの座標（x方向）----
         self.mx1 = mpml  # start point of calculation voluum
-
+#----シミュレーション空間の大きさ（x方向）----
         self.mxx = self.mx + mpml*2 + msf*2
-
-            # total number of cells in z direction
-
+#----散乱場領域の端っこの座標（x方向）----
         self.mx2 = self.mx1 + self.mx + msf*2
 
-            # end point of calculation voluum
-
+#----　シミュレーション空間の大きさ（y方向）----
         self.myy = self.my + mpml*2 + msf*2
-
-            # total number of cells in z direction
-
-        self.my1 = mpml  # start point of calculation voluum
-
+#----散乱ば領域の始まりの座標（y方向）----
+        self.my1 = mpml 
+#----散乱場領域の端っこの座標（y方向）----
         self.my2 = self.my1 + self.my + msf*2
 
-            # end point of calculation voluum
-
     
+#----物体領域の始まりの座標（x）----
+        self.mox1 = self.mx1 + msf
+#----物体領域の端っこの座標（x）
+        self.mox2 = self.mx2 - msf  
 
-        self.mox1 = self.mx1 + msf  # boundary of objec space
-
-        self.mox2 = self.mx2 - msf  # boundary of objec space
-
-        self.moy1 = self.my1 + msf  # boundary of objec space
-
-        self.moy2 = self.my2 - msf  # boundary of objec space
-
+#----物体領域の始まりの座標（y）----
+        self.moy1 = self.my1 + msf  
+#----物体領域の端っこの座標（y）----
+        self.moy2 = self.my2 - msf  
     
 
         self.mzz = self.mz + mpml*2 + msf*2
