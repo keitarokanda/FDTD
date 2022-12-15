@@ -450,34 +450,27 @@ class Preprocess():
 
         """ setting objects """
 
-
-
         self.bgmater = 0
 
         for obj in objs:
 
             objshape = obj.shape
 
+#背景？
             if objshape == 'background':
-
                 self._background(obj)
-
+#球
             elif objshape == 'sphere':
-
                 self._sphere(obj)
-
+#厚板？
             elif objshape == 'slab':
-
                 self._slab(obj)
-
+#平面基板？
             elif objshape == 'substrate':
-
                 self._substrate(obj)
-
+#その他はエラー
             else:
-
                 print('Error: no such shape! ', objshape)
-
                 sys.exit()
 
 

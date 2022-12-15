@@ -53,13 +53,12 @@ if __name__ == "__main__":
     Obj = namedtuple('Obj', ('shape', 'material', 'position', 'size'))
 
     objs = (
-
+#背景を真空に
         Obj('background', 'vacuum', 0, 0),
-
+#真空中にシリカの板を置く
         Obj('substrate', 'SiO2', (0, 0, r1), 0),
-
+#金の球
         Obj('sphere', 'Au', (0, 0, 0), r1)
-
         )
 
 
