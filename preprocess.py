@@ -140,7 +140,7 @@ class Preprocess():
 #----物体領域の端っこの座標（y）----
         self.moy2 = self.my2 - msf  
 
-    
+
 #----　シミュレーション空間の大きさ（z）----
         self.mzz = self.mz + mpml*2 + msf*2
 #----散乱場領域の始まりの座標（z）----
@@ -152,11 +152,8 @@ class Preprocess():
 #----物体領域の終わりの座標（z）----
         self.moz2 = self.mz2 - msf  
 
-        
-
+#----TF/SF interface (z-position)  for source calculation----
         self.izst= self.mz1 + msf - 2
-
-        # TF/SF interface (z-position)  for source calculation
 
         
 #----アレイの作成----
@@ -362,7 +359,7 @@ class Preprocess():
 
         
 
-        # coefficients for time developement
+# coefficients for time developement
 
         self.ce = self.dt/self.eps0
 
@@ -382,18 +379,14 @@ class Preprocess():
 
         self.chz0 = self.dt/self.dz/self.mu0
 
-        
 
+#----媒質をセッティングするメソッド----
     def _set_materials(self, lambda0):
 
-    
 
         self.matermax = 20 # 0:vacuum
-
         self.diemax = 10 # 1-diemax: for constant permittivity
-
         self.drumax = 20 # diemax-drumax: for Drude
-
 
 
         self.epsr = np.ones(self.drumax)
@@ -408,82 +401,51 @@ class Preprocess():
 
         self.deps = np.zeros(self.drumax)
 
-
-
+#媒質の呼び名を決めてる？----
         self.name2mat = {'vacuum':0, 'SiO2':1, 'Ag':11, 'Au':12}
 
-        
 
-        # vacuum
-
+#真空
         self.epsr[self.name2mat['vacuum']] = 1.0
-
         self.sigma[self.name2mat['vacuum']] = 0.0
-
         self.epsinf[self.name2mat['vacuum']] = 1.0
 
-        
-
-        # SiO2(silica)
-
+#SiO2(silica)
         self.epsr[self.name2mat['SiO2']] = self._eps_sio2(lambda0*1.0e6)
-
         self.sigma[self.name2mat['SiO2']] = 0.0
-
         self.epsinf[self.name2mat['SiO2']] = self.epsr[self.name2mat['SiO2']]
 
-        
-
-        # silver J&C (best fit between 400-800nm)
-
+# silver J&C (best fit between 400-800nm)
         self.epsr[self.name2mat['Ag']] = 1.0
-
         self.epsinf[self.name2mat['Ag']] = 4.07669   # epsilon_\infty
-
         self.omegap[self.name2mat['Ag']] = 1.40052e16  # [rad/s]
-
         self.gamma[self.name2mat['Ag']] = 4.21776e13  # [rad/s]
 
-        
-
-        # gold J&C (best fit between 521-1937.3nm)
-
+# gold J&C (best fit between 521-1937.3nm)
         self.epsr[self.name2mat['Au']] = 1.0
-
         self.epsinf[self.name2mat['Au']] = 10.3829  # epsilon_\infty
-
         self.omegap[self.name2mat['Au']] = 1.37498e16  # [rad/s]
-
         self.gamma[self.name2mat['Au']] = 1.18128e14  # [rad/s]
 
-    
 
+#シリカの誘電率を波長の関数で定義？
     def _eps_sio2(self, wavelength):
 
         """ Dielectric constant of SiO2 as a function of wavelength (um)"""
 
-    
-
         a0 = 2.087510310
-
         a1 = 7.18480736e-3
-
         a2 = 1.44309144e-2
-
         a3 = 7.20981855e-4
-
         a4 = 4.85560050e-5
-
         a5 = 8.92406983e-7
 
         ee = a0 + a1*wavelength**2 + a2/wavelength**2 - a3/wavelength**4 + a4/wavelength**6 - a5/wavelength**8
 
-        
-
         return ee
 
     
-
+#置く物体の定義
     def _set_objects(self, objs):
 
         """ setting objects """
