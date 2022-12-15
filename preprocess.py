@@ -474,7 +474,7 @@ class Preprocess():
                 sys.exit()
 
 
-
+#背景のセッティング
     def _background(self, obj):
 
         """ setting dielectric constant of background """
@@ -498,18 +498,16 @@ class Preprocess():
         self.isdz[:] = self.bgmater
 
 
-
+#球のセッティング
     def _sphere(self, obj):
 
         """ setting sphere """
 
-        
 
         materialid = self.name2mat[obj.material]
 
         rr = obj.size*obj.size
 
-        
 
         for iz in range(self.moz1, self.moz2):
 
@@ -560,23 +558,17 @@ class Preprocess():
                                     self.idz[iiz,iiy,iix] = materialid
 
 
-
+#slabのセッティング
     def _slab(self, obj):
 
         """ setting slab """
 
 
-
         materialid = self.name2mat[obj.material]
 
-        izmin = math.ceil((self.z0 + obj.position[2] \
+        izmin = math.ceil((self.z0 + obj.position[2] - object.size[2]/ 2.0)/self.dz + self.moz1 - 0.5)
 
-            - object.size[2]/ 2.0)/self.dz + self.moz1 - 0.5)
-
-        izmax = math.floor((self.z0 + obj.position[2] \
-
-            + object.size[2]/ 2.0)/self.dz + self.moz1+ 0.5)
-
+        izmax = math.floor((self.z0 + obj.position[2] + object.size[2]/ 2.0)/self.dz + self.moz1+ 0.5)
 
 
         for iz in range(izmin, izmax+ 1):
@@ -610,17 +602,15 @@ class Preprocess():
                         self.idz[iz,iy,iz]= materialid
 
 
-
+#平面基板のセッティング
     def _substrate(self, obj):
 
         """ setting substrate """
 
 
-
         materialid = self.name2mat[obj.material]
 
         izmin = math.ceil((self.z0 + obj.position[2])/self.dz + self.moz1 - 0.5)
-
 
 
         for iz in range(izmin, self.mzz+ 1):
@@ -838,10 +828,9 @@ class Preprocess():
                 Epsmon2(epsmon.pol, epsmon.axis, posi, fname))
 
 
-
+#双極子波源のセッティング
     def _set_dipoles(self, dipoles):
 
-    
 
         self.idipoles= []
 
