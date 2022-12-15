@@ -828,7 +828,7 @@ class Preprocess():
                 Epsmon2(epsmon.pol, epsmon.axis, posi, fname))
 
 
-#双極子波源のセッティング
+#========双極子波源のセッティング========
     def _set_dipoles(self, dipoles):
 
 
@@ -837,47 +837,35 @@ class Preprocess():
         Dipole2= namedtuple('Dipole2', ('pol', 'phase', 'ix', 'iy', 'iz'))
 
 
-
         for dipole in dipoles:
 
+#双極子の位置
             if dipole.pol == 'x':
-
                 ix = math.floor((self.x0+dipole.x)/self.dx) + self.mox1
-
                 iy = round((self.y0+dipole.y)/self.dy) + self.moy1
-
                 iz = round((self.z0+dipole.z)/self.dz) + self.moz1
 
             elif dipole.pol == 'y':
-
                 ix = round((self.x0+dipole.x)/self.dx) + self.mox1
-
                 iy = math.floor((self.y0+dipole.y)/self.dy) + self.moy1
-
                 iz = round((self.z0+dipole.z)/self.dz) + self.moz1
 
             else:
-
                 ix = round((self.x0+dipole.x)/self.dx) + self.mox1
-
                 iy = round((self.y0+dipole.y)/self.dy) + self.moy1
-
                 iz = math.floor((self.z0+dipole.z)/self.dz) + self.moz1
 
+#双極子の位置がシミュレーション空間の外になってる場合エラー
             if ix < 0 or ix > self.mxx or iy < 0 or iy > self.myy or iz < 0 or iz > self.mzz:
-
                 print('Error: dipole location is out of range !')
-
                 sys.exit()
 
-                    
 
+#電磁波の位相？
             if dipole.phase == 'in':
-
                 phase = 1
 
             else:
-
                 phase = -1
 
                 
@@ -886,52 +874,40 @@ class Preprocess():
 
 
 
+#========detectorのセッティング========
     def _set_detectors(self, detectors):
-
 
 
         self.idetectors= []
 
         Dtct2= namedtuple('Dtct2', ('pol', 'x', 'y', 'z'))
 
-    
 
         for detector in detectors:
 
+#detectorの位置
             if detector.pol == 'x':
-
                 ix = math.floor((self.x0+detector.x)/self.dx) + self.mox1
-
                 iy = round((self.y0+detector.y)/self.dy) + self.moy1
-
                 iz = round((self.z0+detector.z)/self.dz) + self.moz1
 
             elif detector.pol == 'y':
-
                 ix = round((self.x0+detector.x)/self.dx) + self.mox1
-
                 iy = math.floor((self.y0+detector.y)/self.dy) + self.moy1
-
                 iz = round((self.z0+detector.z)/self.dz) + self.moz1
 
             else:
-
                 ix = round((self.x0+detector.x)/self.dx) + self.mox1
-
                 iy = round((self.y0+detector.y)/self.dy) + self.moy1
-
                 iz = math.floor((self.z0+detector.z)/self.dz) + self.moz1
 
+#detectorの位置がシミュレーション空間の外になってる場合エラー
             if ix < 0 or ix > self.mxx or iy < 0 or iy > self.myy or iz < 0 or iz > self.mzz:
-
                 print('Error: detector location is out of range !')
-
                 sys.exit()
 
-            
 
             self.idetectors.append(Dtct2(detector.pol, ix, iy, iz))
-
 
 
         self.edetect = np.zeros((len(self.idetectors), self.mt))
