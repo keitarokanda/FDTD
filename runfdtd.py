@@ -68,9 +68,7 @@ if __name__ == "__main__":
     # phase: 'in' in-phase, 'anti' antiphase
 
     dipoles= (
-
         Dipole('z', 'in', 0, 0, -30e-9),
-
         )
 
 
