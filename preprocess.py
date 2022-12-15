@@ -24,7 +24,7 @@ class Preprocess():
         self._constants()
 
 
-#----波源の選択----
+#----波源の選択（処理はfdtdの中で）----
         if source == 'plane' or source == 'dipole':
             self.source = source
 
