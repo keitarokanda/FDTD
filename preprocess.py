@@ -1065,29 +1065,22 @@ class Preprocess():
         self.ckhz1[self.mz1:self.mz2] = self.chz0
 
 
-
+#========分散性媒質の取り扱いに必要な補助微分方程式(ADE)法=======
     def _devparam(self):
 
         """  parameter for development with ADE """
 
-    
 
         self.ce1 = np.zeros(self.drumax)
-
         self.ce2 = np.zeros(self.drumax)
-
         self.ce3 = np.zeros(self.drumax)
 
         self.cj1 = np.zeros(self.drumax)
-
         self.cj2 = np.zeros(self.drumax)
-
         self.cj3 = np.zeros(self.drumax)
 
         self.cex2 = np.zeros(self.drumax)
-
         self.cey2 = np.zeros(self.drumax)
-
         self.cez2 = np.zeros(self.drumax)
 
 
@@ -1095,37 +1088,26 @@ class Preprocess():
         for imater in range(self.diemax):
 
             self.cj1[imater] = 1.0
-
             self.cj3[imater] = 0.0
 
             temp1 = self.eps0*self.epsinf[imater]/self.dt - self.sigma[imater]/2.0
-
             temp2 = self.eps0* self.epsinf[imater]/self.dt + self.sigma[imater]/ 2.0
 
             self.ce1[imater] = temp1/temp2
-
             self.ce2[imater] = 1.0/temp2
-
             self.ce3[imater] = 1.0
 
-    
 
         for imater in range(self.diemax, self.drumax):
 
             self.cj1[imater] = (1.0-self.gamma[imater]*self.dt/ 2.0) / (1.0+self.gamma[imater]*self.dt/2.0)
-
-            self.cj3[imater] = (self.eps0*self.omegap[imater] \
-
-                * self.omegap[imater]*self.dt/2.0) / (1.0+self.gamma[imater]*self.dt/2.0)
+            self.cj3[imater] = (self.eps0*self.omegap[imater] * self.omegap[imater]*self.dt/2.0) / (1.0+self.gamma[imater]*self.dt/2.0)
 
             temp1 = self.eps0*self.epsinf[imater]/self.dt - self.cj3[imater]/2.0
-
             temp2 = self.eps0*self.epsinf[imater]/self.dt + self.cj3[imater]/2.0
 
             self.ce1[imater] = temp1/temp2
-
             self.ce2[imater] = 1.0/temp2
-
             self.ce3[imater] = self.ce2[imater]* (1.0+self.cj1[imater])/2.0
 
     
@@ -1133,7 +1115,5 @@ class Preprocess():
         for imater in range(self.drumax):
 
             self.cex2[imater] = self.ce2[imater]/self.dx
-
             self.cey2[imater] = self.ce2[imater]/self.dy
-
             self.cez2[imater] = self.ce2[imater]/self.dz
