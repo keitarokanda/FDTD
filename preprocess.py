@@ -27,19 +27,17 @@ class Preprocess():
 #----波源の選択（処理はfdtdの中で）----
         if source == 'plane' or source == 'dipole':
             self.source = source
-
         else:
             print('Error: no such source! ', source)
-            sys.exit()
+            sys.exit() #エラーあればプログラムを終了
 
 #----パルス波/cw波----
         if pulse == 'pulse' or pulse == 'cw':
             self.pulse = pulse
-
         else:
             print('Error: no such source! ', pulse)
+            sys.exit() #エラーあればプログラムを終了
 
-            sys.exit()
 
         self.mt = mt
         self.mfft = mfft
@@ -61,7 +59,6 @@ class Preprocess():
         self._set_epsmons(epsmons)
 
         if self.source == 'dipole':
-
             self._set_dipoles(dipoles)
 
         self._set_detectors(detectors)
@@ -72,48 +69,37 @@ class Preprocess():
 
 
 
-#----物理定数の定義？----
+#----物理定数メソッドの定義----
     def _constants(self):
         self.cc = 2.99792458e8  #新空中の光速[m/s]
         self.mu0 = 4.0* math.pi*1.0e-7  # permeability of free space [H/m]
         self.eps0 = 1.0 / (self.cc*self.cc*self.mu0) #真空の誘電率[F/m]
         self.zz0 = math.sqrt(self.mu0/self.eps0)  #真空のインピーダンス
 
+#----グリッド作成メソッドの定義----
+    def _setgrid(self, regionx, regiony, regionz, dxtarget, dytarget, dztarget, mpml, msf):
 
-    def _setgrid(self, regionx, regiony, regionz, \
-
-            dxtarget, dytarget, dztarget, mpml, msf):
-
-            
-
-        self.mx = round(regionx/dxtarget)
-
+        self.mx = round(regionx/dxtarget) #小数を丸めて
         self.my = round(regiony/dytarget)
-
         self.mz = round(regionz/dztarget)
 
-        self.dx = regionx/self.mx
-
+        self.dx = regionx/self.mx 
         self.dy = regiony/self.my
-
         self.dz = regionz/self.mz
 
         self.x0 = regionx/2 # origin of the object space
-
         self.y0 = regiony/2
-
         self.z0 = regionz/2
 
+
+#----ソースが双極子の時は----
         if self.source == 'dipole':
-
             msf = 0
-
         else:
-
             msf= msf
 
 
-
+#----計算空間のセッティング？----
         self.mx1 = mpml  # start point of calculation voluum
 
         self.mxx = self.mx + mpml*2 + msf*2
@@ -165,59 +151,37 @@ class Preprocess():
         # TF/SF interface (z-position)  for source calculation
 
         
-
+#----アレイの作成----
     def _create_arrays(self, mpml):
 
         """
-
         Creating arrays for fields
-
         """
 
-        self.idx = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), \
-
-            dtype=np.int)
-
-        self.idy = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), \
-
-            dtype=np.int)
-
-        self.idz = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), \
-
-            dtype=np.int)
+        self.idx = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), dtype=np.int)
+        self.idy = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), dtype=np.int)
+        self.idz = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1), dtype=np.int)
 
         self.isdx = np.zeros((self.mzz+ 1), dtype=np.int)
-
         self.isdy = np.zeros((self.mzz+ 1), dtype=np.int)
-
         self.isdz = np.zeros((self.mzz+ 1), dtype=np.int)
 
 
 
         self.Ex1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Ey1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Ez1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
 
         self.Hx1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Hy1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Hz1 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
 
-
-
         self.Ex2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Ey2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Ez2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
 
         self.Hx2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Hy2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
-
         self.Hz2 = np.zeros((self.mzz+ 1, self.myy+ 1, self.mxx+ 1))
 
 
