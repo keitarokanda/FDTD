@@ -9,10 +9,11 @@ from collections import namedtuple
 import numpy as np
 
 
+#----'Preprocess'クラスの定義----
 class Preprocess():
 
 
-#----変数名の定義？----
+#----コンストラクタの定義----
     def __init__(
             self, source, pulse, lambda0, courantfac, \
             mt, mfft, extrapol, \
