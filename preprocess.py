@@ -113,46 +113,44 @@ class Preprocess():
             msf= msf
 
 
-#----計算空間のセッティング----
+#--------計算空間のセッティング--------
 #mx1→mx0のこと、mx2→mx1のこと？添字変わってる？
 
+
 #----散乱場の始まりの座標（x方向）----
-        self.mx1 = mpml  # start point of calculation voluum
+        self.mx1 = mpml  
 #----シミュレーション空間の大きさ（x方向）----
         self.mxx = self.mx + mpml*2 + msf*2
 #----散乱場領域の端っこの座標（x方向）----
         self.mx2 = self.mx1 + self.mx + msf*2
-
-#----　シミュレーション空間の大きさ（y方向）----
-        self.myy = self.my + mpml*2 + msf*2
-#----散乱ば領域の始まりの座標（y方向）----
-        self.my1 = mpml 
-#----散乱場領域の端っこの座標（y方向）----
-        self.my2 = self.my1 + self.my + msf*2
-
-    
 #----物体領域の始まりの座標（x）----
         self.mox1 = self.mx1 + msf
 #----物体領域の端っこの座標（x）
         self.mox2 = self.mx2 - msf  
 
+
+#----　シミュレーション空間の大きさ（y方向）----
+        self.myy = self.my + mpml*2 + msf*2
+#----散乱場領域の始まりの座標（y方向）----
+        self.my1 = mpml 
+#----散乱場領域の端っこの座標（y方向）----
+        self.my2 = self.my1 + self.my + msf*2
 #----物体領域の始まりの座標（y）----
         self.moy1 = self.my1 + msf  
 #----物体領域の端っこの座標（y）----
         self.moy2 = self.my2 - msf  
+
     
-
+#----　シミュレーション空間の大きさ（z）----
         self.mzz = self.mz + mpml*2 + msf*2
-
-            # total number of cells in z direction
-
-        self.mz1 = mpml  # start point of calculation voluum
+#----散乱場領域の始まりの座標（z）----
+        self.mz1 = mpml  
+#----散乱場領域の端っこの座標（z）----
         self.mz2 = self.mz1 + self.mz + msf*2
-
-            # end point of calculation voluum
-
-        self.moz1 = self.mz1 + msf  # boundary of objec space
-        self.moz2 = self.mz2 - msf  # boundary of objec space
+#----物体領域の始まりの座標（z）----
+        self.moz1 = self.mz1 + msf  
+#----物体領域の終わりの座標（z）----
+        self.moz2 = self.mz2 - msf  
 
         
 
