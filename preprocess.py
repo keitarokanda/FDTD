@@ -986,11 +986,9 @@ class Preprocess():
 
 #----y方向----
 
-        
 
         sigmamax= -(mpow+1)*self.eps0*self.cc*math.log(1.0e-8) / (2.0*mpml*self.dy)
 
-        
 
         for iy in range(mpml+1):
 
@@ -1001,9 +999,7 @@ class Preprocess():
             alpha = amax* iy/mpml
 
             self.ckey[iy]= 1.0/kappa/self.dy
-
             self.cbye[iy] = math.exp(-(alpha+ sig/kappa)*(self.dt/self.eps0))
-
             self.ccye[iy]= -(1.0-self.cbye[iy])* (sig/kappa)/(sig+alpha*kappa)/self.dy
 
         
@@ -1017,30 +1013,23 @@ class Preprocess():
             alpha = amax*(iy+ 0.5)/mpml
 
             self.ckhy1[iy] = self.chy0/kappa
-
             self.cbyh[iy] = math.exp(-(alpha+sig/ kappa)*(self.dt/ self.eps0))
-
             self.ccyh[iy] = -(1.0-self.cbyh[iy]) * (sig/kappa)/(sig+alpha*kappa)/self.dy
 
-        
 
         self.ckey[self.my2:self.myy+1] = self.ckey[mpml::-1]
-
         self.ckhy1[self.my2:self.myy] = self.ckhy1[mpml-1::-1]
 
-        
 
         self.ckey[self.my1+1:self.my2] = 1.0/self.dy
 
         self.ckhy1[self.my1:self.my2] = self.chy0
 
-        
 
         # z direction
 
         sigmamax= -(mpow+1)*self.eps0*self.cc*math.log(1.0e-8) / (2.0* mpml*self.dz)
 
-        
 
         for iz in range(mpml+1):
 
@@ -1051,12 +1040,9 @@ class Preprocess():
             alpha= amax* iz/mpml
 
             self.ckez[iz] = 1.0/kappa/self.dz
-
             self.cbze[iz] = math.exp(-(alpha+sig/kappa)*(self.dt/self.eps0))
-
             self.ccze[iz]= -(1.0-self.cbze[iz]) * (sig/kappa)/(sig+alpha*kappa)/self.dz
 
-        
 
         for iz in range(mpml):
 
@@ -1067,24 +1053,18 @@ class Preprocess():
             alpha = amax* (iz+ 0.5)/mpml
 
             self.ckhz1[iz] = self.chz0/kappa
-
             self.cbzh[iz] = math.exp(-(alpha+sig/kappa)*(self.dt/self.eps0))
-
             self.cczh[iz]= -(1.0-self.cbzh[iz]) * (sig/kappa)/(sig+alpha*kappa)/self.dz
 
-        
 
         self.ckez[self.mz2:self.mzz+1] = self.ckez[mpml::-1]
-
         self.ckhz1[self.mz2:self.mzz] = self.ckhz1[mpml-1::-1]
 
-        
 
         self.ckez[self.mz1+1:self.mz2] = 1.0/self.dz
-
         self.ckhz1[self.mz1:self.mz2] = self.chz0
 
-        
+
 
     def _devparam(self):
 
