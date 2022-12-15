@@ -31,6 +31,7 @@ class Preprocess():
             print('Error: no such source! ', source)
             sys.exit() #エラーあればプログラムを終了
 
+
 #----パルス波/cw波----
         if pulse == 'pulse' or pulse == 'cw':
             self.pulse = pulse
@@ -38,11 +39,15 @@ class Preprocess():
             print('Error: no such source! ', pulse)
             sys.exit() #エラーあればプログラムを終了
 
-
+#----時間発展の回数----
         self.mt = mt
+#----スペクトル計算に用いる時間波形のサンプリング数----
         self.mfft = mfft
+
         self.sampint = mt//mfft
+#----スペクトル計算の0充填をサンプリング数の何倍行うか----
         self.extrapol = extrapol        
+
         self.omega0 = 2.0* math.pi* self.cc/ lambda0
 
             # center angular frequency [1/s]
@@ -54,17 +59,25 @@ class Preprocess():
         self._setgrid(regionx, regiony, regionz, dxtarget, dytarget, dztarget,mpml, msf)
 
         self._set_param(courantfac)
+#----PMLのアレイ作ってる？----
         self._create_arrays(mpml)
+#----座標軸に垂直な断面の電場分布または磁場分布を一定時間間隔で保存するためのパラメータを指定----
         self._set_fieldmon(fieldmons)
+#----保存する座標軸に垂直な断面の媒質の分布の位置を指定----
         self._set_epsmons(epsmons)
 
         if self.source == 'dipole':
             self._set_dipoles(dipoles)
 
+#----時間発展波形及びスペクトルを保存する電場/磁場、及びその位置を指定----
         self._set_detectors(detectors)
+#----波源の中心波長？----
         self._set_materials(lambda0)
+#----物体空間に配置する物体の設定----
         self._set_objects(objs)
+
         self._devparam()
+#----PMLのパラメータ----
         self._cpmlparam(mpml, kappamax, amax, mpow)
 
 
@@ -92,7 +105,7 @@ class Preprocess():
         self.z0 = regionz/2
 
 
-#----ソースが双極子の時は----
+#----散乱領域の設定----
         if self.source == 'dipole':
             msf = 0
         else:
