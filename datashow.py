@@ -43,19 +43,17 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    out = dataname + 'mov' #作成する動画の名前
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v') #コーデックの指定
-    fps = 5 #フレームレート
-    #width, height = 640, 480
+    outfilename = 'fig/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
+    fps = 5.0 #フレームレート
+    width, height = 640, 480 #動画のサイズ
+    outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
     for i in range(0, 32):
         fill0num = f'{i:03}'
         read_fig = cv2.imread('fig/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
-        print('読み込み完了')
-        #width, height = read_fig.shape[:2] #画像のサイズ
-        out = cv2.VideoWriter(out, fourcc, fps, (640, 480)) #videoweiter
-        out.write(read_fig)
+        outfile.write(read_fig)
 
-    out.release()
+    outfile.release()
     print('動画変換完了')
 
 #動画の出力
