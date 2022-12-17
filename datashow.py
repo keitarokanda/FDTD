@@ -4,6 +4,7 @@ import os
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.colors as colors
 
 #----処理したいデータ---
 data = 'Ex_y040_'
@@ -23,10 +24,10 @@ def data2png(x, y, dataname):
 
     for i in range(0, 32):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.loadtxt('field_(sirica,silver)/'+analyze_name+fill0num+'.txt') #データ読み込み
+        loaddata = np.loadtxt('field/'+analyze_name+fill0num+'.txt') #データ読み込み
 
         fig = plt.figure()
-        plt.pcolormesh(x, y, loaddata, cmap='hsv')
+        plt.pcolormesh(x, y, loaddata, cmap='coolwarm', norm=colors.LogNorm(vmin=1e2,vmax=1e-10))
         pp = plt.colorbar(orientation='vertical') #カラーバー
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
@@ -43,8 +44,8 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig_(sirica,silver)/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
-    fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
+    outfilename = 'fig_/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    fourcc = cv2.VideoWriter_fourcc('m','p','4','v') #コーデックの指定
     fps = 5.0 #フレームレート
     width, height = 640, 480 #動画のサイズ
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
