@@ -24,7 +24,7 @@ def data2png(x, y, dataname):
 
     for i in range(0, 32):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.loadtxt('field/'+analyze_name+fill0num+'.txt') #データ読み込み
+        loaddata = np.abs(np.loadtxt('field/'+analyze_name+fill0num+'.txt')) #データ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='coolwarm', norm=colors.LogNorm(vmin=1e2,vmax=1e-10))
