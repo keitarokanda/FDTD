@@ -24,7 +24,7 @@ def data2png(x, y, dataname):
 
     for i in range(0, 32):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
+        loaddata = np.abs(np.loadtxt('field_(vacuum)/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='coolwarm', shading='auto', norm=colors.LogNorm(vmin=1e2,vmax=1e-10)) #カラーメッシュの作成、カラーバーは対数表示にしている
@@ -43,7 +43,7 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    outfilename = 'fig/vacuum'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
     fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
     fps = 5.0 #フレームレート
     width, height = 640, 480 #動画のサイズ
