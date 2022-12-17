@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
 
     source = 'dipole'  # 'dipole' or 'plane' wave source
-    pulse = 'pulse'  # 'pulse' or 'cw' source
+    pulse = 'cw'  # 'pulse' or 'cw' source
 
 
     lambda0 = 0.561e-6  # center wavelength in vacuum [m]
