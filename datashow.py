@@ -19,12 +19,12 @@ def data2png(x, y, dataname):
 
     analyze_name = dataname
 
-    new_dir_path = 'fig/'+analyze_name  #画像を保存するフォルダのパス
+    new_dir_path = 'fig_(cw,vacuum)/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
     for i in range(0, 32):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field_(vacuum)/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
+        loaddata = np.abs(np.loadtxt('field_(cw,vacuum)/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='coolwarm', shading='auto', norm=colors.LogNorm(vmin=1e2,vmax=1e-10)) #カラーメッシュの作成、カラーバーは対数表示にしている
@@ -43,14 +43,14 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/'+'vacuum'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    outfilename = 'fig/'+''+dataname+'/'+dataname+'.mp4' #作成する動画の名前
     fourcc = cv2.VideoWriter_fourcc('M','P','4','S') #コーデックの指定
     fps = 5.0 #フレームレート
     width, height = 640, 480 #動画のサイズ
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
     for i in range(0, 32):
         fill0num = f'{i:03}'
-        read_fig = cv2.imread('fig/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
+        read_fig = cv2.imread('fig_(cw,vacuum)/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
         outfile.write(read_fig)
 
     outfile.release()
