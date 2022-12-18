@@ -8,6 +8,7 @@ import matplotlib.colors as colors
 
 #----処理したいデータ---
 data = 'Ex_y040_'
+setting = '_(cw,vacuum)'
 
 #----グリッドの作成----
 x = np.arange(0, 96, 1)
@@ -19,12 +20,12 @@ def data2png(x, y, dataname):
 
     analyze_name = dataname
 
-    new_dir_path = 'fig/fig_(?,vacuum)/'+analyze_name  #画像を保存するフォルダのパス
+    new_dir_path = 'fig/fig_'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
     for i in range(0, 32):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field_(?,vacuum)/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
+        loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='coolwarm', shading='auto', norm=colors.LogNorm(vmin=1e2,vmax=1e-10)) #カラーメッシュの作成、カラーバーは対数表示にしている
