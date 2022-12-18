@@ -20,7 +20,7 @@ def data2png(x, y, dataname):
 
     analyze_name = dataname
 
-    new_dir_path = 'fig/fig_'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
+    new_dir_path = 'fig/fig'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
     for i in range(0, 32):
@@ -44,8 +44,8 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
-    fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
+    outfilename = 'fig/fig_'+setting+'/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    fourcc = cv2.VideoWriter_fourcc('m','p','4','v') #コーデックの指定
     fps = 5.0 #フレームレート
     width, height = 640, 480 #動画のサイズ
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
