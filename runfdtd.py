@@ -12,12 +12,12 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    regionx = 200.0e-9  # object region
-    regiony = 200.0e-9  # object region
-    regionz = 200.0e-9  # object region
-    dxtarget = 2.5e-9  # dx [m]
-    dytarget = 2.5e-9  # dy [m]
-    dztarget = 2.5e-9  # dz [m]
+    regionx = 40.0  # object region
+    regiony = 40.0  # object region
+    regionz = 40.0  # object region
+    dxtarget = 4.0e-2  # dx [m]
+    dytarget = 4.0e-2  # dy [m]
+    dztarget = 4.0e-2  # dz [m]
 
 
 #----電磁波----
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     pulse = 'cw'  # 'pulse' or 'cw' source
 
 #中心波長（真空中）[m]
-    lambda0 = 0.561e-6  
+    lambda0 = 0.75  
 #クーラン条件(のCourant factor)
     courantfac = 0.98  
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 
 #球の半径
-    r1 = 25.0e-9  
+    r1 = 8.0
 
     Obj = namedtuple('Obj', ('shape', 'material', 'position', 'size'))
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 # ----field monitor----
 #出力データ数
-    savenum = 32 
+    savenum = 50 
 #データ保存のインターバル
     saveint = mt//savenum 
 
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         )
 
 
-    r1 = 25.0e-9  # radius of sphere
+    r1 = 8.0  # radius of sphere
 
     Dtct = namedtuple('Dtct', ('pol', 'x', 'y', 'z'))
 
