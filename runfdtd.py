@@ -11,7 +11,7 @@ from fdtd import *
 if __name__ == "__main__":
 
 
-#シミュレーション空間の設定
+#----シミュレーション空間の設定----
     regionx = 200.0e-9  # object region
     regiony = 200.0e-9  # object region
     regionz = 200.0e-9  # object region
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     dztarget = 2.5e-9  # dz [m]
 
 
-#電磁波
+#----電磁波----
     source = 'dipole'  # 'dipole' or 'plane' wave source
     pulse = 'cw'  # 'pulse' or 'cw' source
 
@@ -64,49 +64,31 @@ if __name__ == "__main__":
 
 
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-
-    # phase: 'in' in-phase, 'anti' antiphase
-
-    dipoles= (
-        Dipole('z', 'in', 0, 0, -30e-9),
-        )
+    dipoles= (Dipole('z', 'in', 0, 0, -30e-9),) # phase: 'in' in-phase, 'anti' antiphase
 
 
-
-    # field monitors
-
-    savenum = 32  # total number of data saving
-
-    saveint = mt//savenum  # interval for data saving
+# ----field monitor----
+#出力データ数
+    savenum = 32 
+#データ保存のインターバル
+    saveint = mt//savenum 
 
     Fmon= namedtuple('Fmon', ('ehfield', 'axis', 'position'))
-
     fieldmons = (savenum, saveint,
-
         Fmon('Ex', 'y', 0),
-
         Fmon('Ex', 'z', 0),
-
         Fmon('Ez', 'y', 0),
-
         Fmon('Hy', 'x', 0)
-
         )
 
 
-
-    # epsilon monitors
-
+# ----epsilon monitors----
     Epsmon = namedtuple('Epsmon', ('pol', 'axis', 'position'))
-
     epsmons = (
-
         Epsmon('x', 'z', 0), \
-
         Epsmon('x', 'y', 0), \
-
-        Epsmon('z', 'z', 0))
-
+        Epsmon('z', 'z', 0)
+        )
 
 
     r1 = 25.0e-9  # radius of sphere
@@ -114,29 +96,19 @@ if __name__ == "__main__":
     Dtct = namedtuple('Dtct', ('pol', 'x', 'y', 'z'))
 
     detectors = (
-
         Dtct('x', 0, 0, 0),
-
         Dtct('x', r1 + 5.0e-9, 0, 0),
-
         Dtct('z', r1 + 5.0e-9, 0, 0),
-
         Dtct('x', r1, 0, r1),
-
         Dtct('z', r1, 0, r1),
-
         )
 
 
 
     em = Fdtd(\
-
         source, pulse, lambda0, courantfac, mt, mfft, extrapol, \
-
         regionx, regiony, regionz, dxtarget, dytarget, dztarget, \
-
         mpml, msf, kappamax, amax, mpow, \
-
         objs, fieldmons, epsmons, detectors, dipoles)
 
     start = time.time()
