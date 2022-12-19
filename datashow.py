@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.colors as colors
 
 #----処理したいデータ---
-data = 'Ex_y040_'
+data = 'Ex_z040_'
 setting = '_(cw,vacuum)'
 
 #----グリッドの作成----
@@ -51,7 +51,7 @@ def img2mov(dataname):
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
     for i in range(0, 32):
         fill0num = f'{i:03}'
-        read_fig = cv2.imread('fig_(cw,vacuum)/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
+        read_fig = cv2.imread('fig/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
         outfile.write(read_fig)
 
     outfile.release()
