@@ -37,20 +37,18 @@ if __name__ == "__main__":
     extrapol = 4  
 
 
-
-    msf = 3  # width for scattering field region (>=3)
-
-    mpml = 8  # number of perfectly matched layers
-
-    kappamax = 100.0  # parameter for CFS-CPML
-
-    amax = 10.0  # parameter for CFS-CPML
-
-    mpow = 3  # parameter for CFS-CPML
+#散乱場領域の大きさ
+    msf = 3  # (>=3)
+#PMLの層数
+    mpml = 8  
+#PMLパラメータ
+    kappamax = 100.0  
+    amax = 10.0  
+    mpow = 3  
 
 
-
-    r1 = 25.0e-9  # radius of inner sphere
+#球の半径
+    r1 = 25.0e-9  
 
     Obj = namedtuple('Obj', ('shape', 'material', 'position', 'size'))
 
