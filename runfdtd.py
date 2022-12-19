@@ -11,7 +11,7 @@ from fdtd import *
 if __name__ == "__main__":
 
 
-
+#シミュレーション空間の設定
     regionx = 200.0e-9  # object region
     regiony = 200.0e-9  # object region
     regionz = 200.0e-9  # object region
@@ -20,19 +20,21 @@ if __name__ == "__main__":
     dztarget = 2.5e-9  # dz [m]
 
 
-
+#電磁波
     source = 'dipole'  # 'dipole' or 'plane' wave source
     pulse = 'cw'  # 'pulse' or 'cw' source
 
+#中心波長（真空中）[m]
+    lambda0 = 0.561e-6  
+#クーラン条件(のCourant factor)
+    courantfac = 0.98  
 
-    lambda0 = 0.561e-6  # center wavelength in vacuum [m]
-    courantfac = 0.98  # Courant factor
-
-    mt= 2**15  # number of iterations, must be integer power of 2
-
-    mfft= 2**9  # number of sampling for FFT, must be integer power of 2
-
-    extrapol = 4  # zero-filling factor before FFT
+#時間発展の回数
+    mt= 2**15  # must be integer power of 2
+#スペクトル計算に用いる時間波形の回数
+    mfft= 2**9  # must be integer power of 2
+#スペクトル計算時の0充填をサンプリング時間の何倍行うか
+    extrapol = 4  
 
 
 
