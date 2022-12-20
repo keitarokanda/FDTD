@@ -12,9 +12,9 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    regionx = 40.0  # object region
-    regiony = 40.0  # object region
-    regionz = 40.0  # object region
+    regionx = 10.0  # object region
+    regiony = 10.0  # object region
+    regionz = 10.0  # object region
     dxtarget = 1.0e-2  # dx [m]
     dytarget = 1.0e-2  # dy [m]
     dztarget = 1.0e-2  # dz [m]

@@ -46,7 +46,7 @@ savenum : 250
 
 ### 22/12/21
 * 空間設定
-region : $40 \times 40 \times 40$  
+region : $10 \times 10 \times 10$  
 セルサイズ : $0.01 \times 0.01 \times 0.01$
 lambda0 : 1.0
 * 時間設定
