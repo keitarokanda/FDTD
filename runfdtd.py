@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 # ----field monitor----
 #出力データ数
-    savenum = 50 
+    savenum = 250 
 #データ保存のインターバル
     saveint = mt//savenum 
 
