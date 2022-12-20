@@ -7,12 +7,12 @@ import numpy as np
 import matplotlib.colors as colors
 
 #----処理したいデータ---
-data = 'Ex_z040_'
-setting = '_(cw,vacuum)'
+data = 'Ex_z050_'
+setting = '_(221219)'
 
 #----グリッドの作成----
-x = np.arange(0, 96, 1)
-y = np.arange(0, 97, 1)
+x = np.arange(0, 117, 1)
+y = np.arange(0, 116, 1)
 x,y = np.meshgrid(x,y)
 
 #----画像の作成パート----
@@ -23,7 +23,7 @@ def data2png(x, y, dataname):
     new_dir_path = 'fig/fig'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
-    for i in range(0, 32):
+    for i in range(0, 50):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
         loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
 
@@ -49,7 +49,7 @@ def img2mov(dataname):
     fps = 5.0 #フレームレート
     width, height = 640, 480 #動画のサイズ
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
-    for i in range(0, 32):
+    for i in range(0, 50):
         fill0num = f'{i:03}'
         read_fig = cv2.imread('fig/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
         outfile.write(read_fig)
