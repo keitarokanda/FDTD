@@ -25,7 +25,7 @@ def data2fig(x, y, dataname):
 
     for i in range(0, 50):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
+        loaddata = np.abs(np.loadtxt('field_/field'+setting+'/'+analyze_name+fill0num+'.txt')) #絶対値でデータ読み込み
         max_value = max(loaddata[2])
 
         fig = plt.figure()
