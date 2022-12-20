@@ -2,21 +2,21 @@ import glob
 import os
 
 import cv2
+import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.colors as colors
 
 #----処理したいデータ---
 data = 'Ex_z050_'
 setting = '_(221219)'
 
 #----グリッドの作成----
-x = np.arange(0, 117, 1)
-y = np.arange(0, 116, 1)
+x = np.arange(0, 116, 1)
+y = np.arange(0, 117, 1)
 x,y = np.meshgrid(x,y)
 
 #----画像の作成パート----
-def data2png(x, y, dataname):
+def data2fig(x, y, dataname):
 
     analyze_name = dataname
 
@@ -38,7 +38,7 @@ def data2png(x, y, dataname):
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
 #画像の出力
-data2png(x, y, data)
+data2fig(x, y, data)
 print('画像変換完了')
 
 
