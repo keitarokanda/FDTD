@@ -64,12 +64,12 @@ if __name__ == "__main__":
 
 
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 0, -30e-9),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
 #出力データ数
-    savenum = 256 
+    savenum = 2**8 
 #データ保存のインターバル
     saveint = mt//savenum 
 

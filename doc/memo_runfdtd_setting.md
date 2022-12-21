@@ -79,5 +79,6 @@ mfft : 32
 * その他
 媒質 : 全てvacuum  
 r1 : 1.0
+dipoleの位置：(0,0,0)
 savenum : 256 
 実行時間 : 
