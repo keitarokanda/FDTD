@@ -30,7 +30,7 @@ def data2fig(x, y, dataname):
         max_value = max(loaddata[2])
 
         fig = plt.figure()
-        plt.pcolormesh(x, y, loaddata, cmap='coolwarm', shading='auto', norm=colors.LogNorm(vmin=1e-3, vmax=1e-0)) #カラーメッシュの作成、カラーバーは対数表示にしている
+        plt.pcolormesh(x, y, loaddata, cmap='viridis', shading='auto', norm=colors.LogNorm(vmin=1e-3, vmax=1e-0)) #カラーメッシュの作成、カラーバーは対数表示にしている
         pp = plt.colorbar(orientation='vertical') #カラーバー
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
