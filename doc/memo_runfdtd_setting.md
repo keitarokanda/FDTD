@@ -48,3 +48,19 @@ mt : $2 ^{15}$
 r1 : 1.0
 savenum : 250 
 実行時間 : 途中でクラッシュ 
+
+### 22/12/21_2
+* 空間設定
+region : $10 \times 10 \times 10$  
+セルサイズ : $0.1 \times 0.1 \times 0.1$
+lambda0 : 1.0
+* 時間設定
+Courant factor : 0.98 
+$ \delta t = S \frac{\delta x}{c} = 0.1306...\times 10^{-8} \mathrm{sec}$
+mt : $2 ^{15}$
+総計算時間 $= \delta t \times mt$
+* その他
+媒質 : 全てvacuum  
+r1 : 1.0
+savenum : 50 
+実行時間 : 

@@ -15,9 +15,9 @@ if __name__ == "__main__":
     regionx = 10.0  # object region
     regiony = 10.0  # object region
     regionz = 10.0  # object region
-    dxtarget = 1.0e-2  # dx [m]
-    dytarget = 1.0e-2  # dy [m]
-    dztarget = 1.0e-2  # dz [m]
+    dxtarget = 1.0e-1  # dx [m]
+    dytarget = 1.0e-1  # dy [m]
+    dztarget = 1.0e-1  # dz [m]
 
 
 #----電磁波----
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 # ----field monitor----
 #出力データ数
-    savenum = 250 
+    savenum = 50 
 #データ保存のインターバル
     saveint = mt//savenum 
 
