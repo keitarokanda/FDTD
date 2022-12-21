@@ -62,4 +62,6 @@ def img2mov(dataname):
 #動画の出力
 img2mov(data)
 
+#aiueo
+
 
