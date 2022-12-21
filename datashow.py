@@ -9,7 +9,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_y050_'
-setting = '_(221221_3)'
+setting = '_(221221_4)'
 
 #----グリッドの作成----
 x = np.arange(0, 116, 1)
