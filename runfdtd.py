@@ -12,12 +12,12 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    regionx = 10.0  # object region
-    regiony = 10.0  # object region
-    regionz = 10.0  # object region
-    dxtarget = 1.0e-1  # dx [m]
-    dytarget = 1.0e-1  # dy [m]
-    dztarget = 1.0e-1  # dz [m]
+    regionx = 40.0  # object region
+    regiony = 40.0  # object region
+    regionz = 40.0  # object region
+    dxtarget = 4.0e-1  # dx [m]
+    dytarget = 4.0e-1  # dy [m]
+    dztarget = 4.0e-1  # dz [m]
 
 
 #----電磁波----
@@ -27,12 +27,12 @@ if __name__ == "__main__":
 #中心波長（真空中）[m]
     lambda0 = 1.0  
 #クーラン条件(のCourant factor)
-    courantfac = 0.98  
+    courantfac = 0.5  
 
 #時間発展の回数
-    mt= 2**15  # must be integer power of 2
+    mt= 2**8  # must be integer power of 2
 #スペクトル計算に用いる時間波形の回数
-    mfft= 2**9  # must be integer power of 2
+    mfft= 2**5  # must be integer power of 2
 #スペクトル計算時の0充填をサンプリング時間の何倍行うか
     extrapol = 4  
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 # ----field monitor----
 #出力データ数
-    savenum = 50 
+    savenum = 256 
 #データ保存のインターバル
     saveint = mt//savenum 
 
