@@ -81,4 +81,25 @@ mfft : 32
 r1 : 1.0
 dipoleの位置：(0,0,0)
 savenum : 256 
+実行時間 : 124.1秒  
+
+### 22/12/21_4
+* 波源設定
+dipole  
+pulse
+* 空間設定
+region : $40 \times 40 \times 40$  
+セルサイズ : $0.4 \times 0.4 \times 0.4$
+lambda0 : 1.0
+* 時間設定
+Courant factor : 0.5 
+$ \delta t = S \frac{\delta x}{c} = 6.67...\times 10^{-10} \mathrm{sec}$
+mt : $256 (=2 ^{8})$
+mfft : 32
+総計算時間 $= \delta t \times mt = 1.71 \times 10^{-5} \mathrm{sec}$
+* その他
+媒質 : 全てvacuum  
+r1 : 5.0
+dipoleの位置：(0,0,0)
+savenum : 256 
 実行時間 : 124.1秒

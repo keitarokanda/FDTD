@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
 #----電磁波----
     source = 'dipole'  # 'dipole' or 'plane' wave source
-    pulse = 'cw'  # 'pulse' or 'cw' source
+    pulse = 'pulse'  # 'pulse' or 'cw' source
 
 #中心波長（真空中）[m]
     lambda0 = 1.0  
@@ -91,14 +91,14 @@ if __name__ == "__main__":
         )
 
 
-    r1 = 1.0  # radius of sphere
+    r1 = 5.0  # radius of sphere
 
     Dtct = namedtuple('Dtct', ('pol', 'x', 'y', 'z'))
 
     detectors = (
         Dtct('x', 0, 0, 0),
-        Dtct('x', r1 + 5.0e-9, 0, 0),
-        Dtct('z', r1 + 5.0e-9, 0, 0),
+        Dtct('x', r1 * 1.5, 0, 0),
+        Dtct('z', r1 * 1.5, 0, 0),
         Dtct('x', r1, 0, r1),
         Dtct('z', r1, 0, r1),
         )
