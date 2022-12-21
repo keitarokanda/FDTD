@@ -16,6 +16,8 @@ savenum : 50
 
 ### 22/12/20
 * 空間設定
+wave source : dipole  
+type : cw  
 region : $40 \times 40 \times 40$  
 セルサイズ : $0.4 \times 0.4 \times 0.4$
 lambda0 : 0.75  
@@ -45,4 +47,4 @@ mt : $2 ^{15}$
 媒質 : 全てvacuum  
 r1 : 1.0
 savenum : 250 
-実行時間 : 途中でクラッシュ
+実行時間 : 途中でクラッシュ 
