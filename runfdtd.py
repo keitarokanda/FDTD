@@ -15,9 +15,9 @@ if __name__ == "__main__":
     regionx = 40.0  # object region
     regiony = 40.0  # object region
     regionz = 40.0  # object region
-    dxtarget = 4.0e-1  # dx [m]
-    dytarget = 4.0e-1  # dy [m]
-    dztarget = 4.0e-1  # dz [m]
+    dxtarget = 1.0e-1  # dx [m]
+    dytarget = 1.0e-1  # dy [m]
+    dztarget = 1.0e-1  # dz [m]
 
 
 #----電磁波----
