@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ---
-data = 'Ex_y050_'
-setting = '_(221221_4)'
+data = 'Ex_y200_'
+setting = '_(221221_5)'
 
 #----グリッドの作成----
-x = np.arange(0, 116, 1)
-y = np.arange(0, 117, 1)
+x = np.arange(0, 416, 1)
+y = np.arange(0, 417, 1)
 x,y = np.meshgrid(x,y)
 
 #----画像の作成パート----
