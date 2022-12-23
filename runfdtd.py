@@ -147,12 +147,12 @@ setting_log = [
     ['mfft', mfft], \
     ['ectrapol', extrapol], \
     ['total time [sec]', total_time], 
-    ['maximum propagation distance', reach_ditance], \
+    ['maximum propagation distance [m]', reach_ditance], \
     ['====MSF, PML===='], \
-    ['width of MSF', msf], \
-    ['width of PML', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
+    ['number of MSF layer', msf], \
+    ['number of PML', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
     ['====object setting===='], \
-    ['radius of sphere', r1], \
+    ['radius of sphere [m]', r1], \
     ['Obj'], \
     [objs], \
     ['====diple setting===='], \
@@ -166,7 +166,7 @@ setting_log = [
     [epsmons], \
     ['Dtct'], \
     [detectors], \
-    ['計算にかかった時間[sec]', time.time() - start]
+    ['elapsed time [sec]', time.time() - start]
     ]
 
 with open('field/0_setting_log.csv', 'w') as f :
