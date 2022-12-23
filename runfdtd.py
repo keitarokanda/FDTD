@@ -19,6 +19,9 @@ if __name__ == "__main__":
     dxtarget = 3.0e-1  # dx [m]
     dytarget = 3.0e-1  # dy [m]
     dztarget = 3.0e-1  # dz [m]
+    gridnum_x = regionx / dxtarget
+    gridnum_y = regiony / dytarget
+    gridnum_z = regionz / dztarget
 
 
 #----電磁波----
@@ -30,13 +33,21 @@ if __name__ == "__main__":
 #クーラン条件(のCourant factor)
     courantfac = 0.5  
 
+#時間刻み
+    time_step = courantfac * dxtarget / 3.0e8
+#Coutant条件
+    courant_condtion = dxtarget / (3.0e8 *np.sqrt(3))
+
 #時間発展の回数
     mt= 2**8  # must be integer power of 2
 #スペクトル計算に用いる時間波形の回数
     mfft= 2**5  # must be integer power of 2
 #スペクトル計算時の0充填をサンプリング時間の何倍行うか
     extrapol = 4  
-
+#総計算時間
+    total_time = time_step * mt
+#進む距離
+    reach_ditance = total_time * 3e8
 
 #散乱場領域の大きさ
     msf = 3  # (>=3)
@@ -121,34 +132,43 @@ if __name__ == "__main__":
 
 #====setting logの作成====
 setting_log = [
-    ['region :', regionx, regiony, regionz], \
-    ['meshsize :', dxtarget, dytarget, dztarget], \
-    ['source :', source], \
-    ['pulsse :', pulse], \
-    ['lambda0 :', lambda0], \
-    ['courant factor :', courantfac], \
-    ['mt :', mt], \
-    ['mfft :', mfft], \
-    ['ectrapol :', extrapol], \
-    ['msf :', msf], \
-    ['mpml :', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
-    ['--object setting--'], \
-    ['r1 :', r1], \
-    ['obj :', objs], \
-    ['--diple setting--'], \
+    ['region size [m]', regionx, regiony, regionz], \
+    ['grid size [m]', dxtarget, dytarget, dztarget], \
+    ['number of grid', gridnum_x, gridnum_y, gridnum_z], \
+    ['====source setting===='], \
+    ['source (dipole/plane)', source], \
+    ['type (pulse/cw)', pulse], \
+    ['center wavelength [m]', lambda0], \
+    ['====time setting===='], \
+    ['Courant factor', courantfac], \
+    ['time step [sec]', time_step], \
+    ['Couran condition [sec]', courant_condtion], 
+    ['interaction time', mt], \
+    ['mfft', mfft], \
+    ['ectrapol', extrapol], \
+    ['total time [sec]', total_time], 
+    ['maximum propagation distance', reach_ditance], \
+    ['====MSF, PML===='], \
+    ['width of MSF', msf], \
+    ['width of PML', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
+    ['====object setting===='], \
+    ['radius of sphere', r1], \
+    ['Obj'], \
+    [objs], \
+    ['====diple setting===='], \
     [dipoles], \
-    ['--saving setting--'], \
-    ['savenum', savenum], \
-    ['saveint', saveint], \
+    ['====saving setting===='], \
+    ['how many times to save result', savenum], \
+    ['result saving interval', saveint], \
     ['Fmon'], \
     [fieldmons], \
     ['Epsmon'], \
     [epsmons], \
     ['Dtct'], \
     [detectors], \
-    
+    ['計算にかかった時間[sec]', time.time() - start]
     ]
 
-with open('field/0_setting_logcsv', 'w') as f :
+with open('field/0_setting_log.csv', 'w') as f :
     writer = csv.writer(f)
     writer.writerows(setting_log)
