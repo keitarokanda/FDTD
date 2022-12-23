@@ -13,12 +13,17 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    regionx = 30.0  # object region
-    regiony = 30.0  # object region
-    regionz = 30.0  # object region
-    dxtarget = 3.0e-1  # dx [m]
-    dytarget = 3.0e-1  # dy [m]
-    dztarget = 3.0e-1  # dz [m]
+    region_size = 30.0
+    grid_size = 0.075
+
+    regionx = region_size  # object region
+    regiony = region_size  # object region
+    regionz = region_size  # object region
+
+    dxtarget = grid_size  # dx [m]
+    dytarget = grid_size  # dy [m]
+    dztarget = grid_size  # dz [m]
+    
     gridnum_x = regionx / dxtarget
     gridnum_y = regiony / dytarget
     gridnum_z = regionz / dztarget
