@@ -118,13 +118,37 @@ if __name__ == "__main__":
 
     print('Elapsed time = %f s' % (time.time() - start))
 
+
+#====setting logの作成====
 setting_log = [
-    ['region', regionx, regiony, regionz], \
-    ['meshsize', dxtarget, dytarget, dztarget], \
-    ['source', source], \
-    ['pulsse', pulse]
+    ['region :', regionx, regiony, regionz], \
+    ['meshsize :', dxtarget, dytarget, dztarget], \
+    ['source :', source], \
+    ['pulsse :', pulse], \
+    ['lambda0 :', lambda0], \
+    ['courant factor :', courantfac], \
+    ['mt :', mt], \
+    ['mfft :', mfft], \
+    ['ectrapol :', extrapol], \
+    ['msf :', msf], \
+    ['mpml :', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
+    ['--object setting--'], \
+    ['r1 :', r1], \
+    ['obj :', objs], \
+    ['--diple setting--'], \
+    [dipoles], \
+    ['--saving setting--'], \
+    ['savenum', savenum], \
+    ['saveint', saveint], \
+    ['Fmon'], \
+    [fieldmons], \
+    ['Epsmon'], \
+    [epsmons], \
+    ['Dtct'], \
+    [detectors], \
+    
     ]
 
-with open('field/settingcsv', 'w') as f :
+with open('field/0_setting_logcsv', 'w') as f :
     writer = csv.writer(f)
     writer.writerows(setting_log)
