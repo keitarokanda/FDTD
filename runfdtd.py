@@ -122,7 +122,6 @@ if __name__ == "__main__":
 
 
 
-
 #====setting logの作成====
 setting_log = [
     ['region size [m]', regionx, regiony, regionz], \
@@ -167,8 +166,6 @@ with open('field/0_setting_log.csv', 'w') as f :
     writer.writerows(setting_log)
 
 
-
-
     em = Fdtd(\
         source, pulse, lambda0, courantfac, mt, mfft, extrapol, \
         regionx, regiony, regionz, dxtarget, dytarget, dztarget, \
@@ -181,3 +178,46 @@ with open('field/0_setting_log.csv', 'w') as f :
 
     print('Elapsed time = %f s' % (time.time() - start))
 
+
+#====setting logの作成====
+setting_log = [
+    ['region size [m]', regionx, regiony, regionz], \
+    ['grid size [m]', dxtarget, dytarget, dztarget], \
+    ['number of grid', gridnum_x, gridnum_y, gridnum_z], \
+    ['====source setting===='], \
+    ['source (dipole/plane)', source], \
+    ['type (pulse/cw)', pulse], \
+    ['center wavelength [m]', lambda0], \
+    ['====time setting===='], \
+    ['Courant factor', courantfac], \
+    ['time step [sec]', time_step], \
+    ['Couran condition [sec]', courant_condtion], 
+    ['interaction time', mt], \
+    ['mfft', mfft], \
+    ['ectrapol', extrapol], \
+    ['total time [sec]', total_time], 
+    ['maximum propagation distance [m]', reach_ditance], \
+    ['====MSF, PML===='], \
+    ['number of MSF layer', msf], \
+    ['number of PML', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
+    ['====object setting===='], \
+    ['radius of sphere [m]', r1], \
+    ['Obj'], \
+    [objs], \
+    ['====diple setting===='], \
+    [dipoles], \
+    ['====saving setting===='], \
+    ['how many times to save result', savenum], \
+    ['result saving interval', saveint], \
+    ['Fmon'], \
+    [fieldmons], \
+    ['Epsmon'], \
+    [epsmons], \
+    ['Dtct'], \
+    [detectors], \
+    ['elapsed time [sec]', time.time() - start]
+    ]
+
+with open('field/0_setting_log.csv', 'w') as f :
+    writer = csv.writer(f)
+    writer.writerows(setting_log)
