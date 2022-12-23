@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
 
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 10, 0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 5, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
