@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
 
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 100, 0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 10, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
@@ -121,18 +121,6 @@ if __name__ == "__main__":
         )
 
 
-
-    em = Fdtd(\
-        source, pulse, lambda0, courantfac, mt, mfft, extrapol, \
-        regionx, regiony, regionz, dxtarget, dytarget, dztarget, \
-        mpml, msf, kappamax, amax, mpow, \
-        objs, fieldmons, epsmons, detectors, dipoles)
-
-    start = time.time()
-
-    em.sweep()
-
-    print('Elapsed time = %f s' % (time.time() - start))
 
 
 #====setting logの作成====
@@ -177,3 +165,19 @@ setting_log = [
 with open('field/0_setting_log.csv', 'w') as f :
     writer = csv.writer(f)
     writer.writerows(setting_log)
+
+
+
+
+    em = Fdtd(\
+        source, pulse, lambda0, courantfac, mt, mfft, extrapol, \
+        regionx, regiony, regionz, dxtarget, dytarget, dztarget, \
+        mpml, msf, kappamax, amax, mpow, \
+        objs, fieldmons, epsmons, detectors, dipoles)
+
+    start = time.time()
+
+    em.sweep()
+
+    print('Elapsed time = %f s' % (time.time() - start))
+
