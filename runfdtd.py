@@ -34,7 +34,7 @@ if __name__ == "__main__":
     pulse = 'pulse'  # 'pulse' or 'cw' source
 
 #中心波長（真空中）[m]
-    lambda0 = 1.0  
+    lambda0 = 0.75  
 #クーラン条件(のCourant factor)
     courantfac = 0.5  
 
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     courant_condtion = dxtarget / (3.0e8 *np.sqrt(3))
 
 #時間発展の回数
-    mt= 2**8  # must be integer power of 2
+    mt= 2**9  # must be integer power of 2
 #スペクトル計算に用いる時間波形の回数
     mfft= 2**5  # must be integer power of 2
 #スペクトル計算時の0充填をサンプリング時間の何倍行うか
@@ -81,12 +81,12 @@ if __name__ == "__main__":
 
 
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 100, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
 #出力データ数
-    savenum = 2**8 
+    savenum = mt 
 #データ保存のインターバル
     saveint = mt//savenum 
 
