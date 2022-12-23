@@ -2,6 +2,7 @@
 
 
 
+import csv
 import time
 from collections import namedtuple
 
@@ -117,5 +118,13 @@ if __name__ == "__main__":
 
     print('Elapsed time = %f s' % (time.time() - start))
 
+setting_log = [
+    ['region', regionx, regiony, regionz], \
+    ['meshsize', dxtarget, dytarget, dztarget], \
+    ['source', source], \
+    ['pulsse', pulse]
+    ]
 
-
+with open('field/settingcsv', 'w') as f :
+    writer = csv.writer(f)
+    writer.writerows(setting_log)
