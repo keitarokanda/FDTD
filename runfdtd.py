@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    region_size = 10.0
+    region_size = 20.0
     grid_size = 0.1
 
     regionx = region_size  # object region
