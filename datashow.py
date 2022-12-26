@@ -8,7 +8,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_y200_'
-setting = '_(221225)'
+setting = '_test'
 
 #----グリッドの作成----
 x = np.arange(0, 416, 1)
