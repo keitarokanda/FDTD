@@ -102,29 +102,19 @@ class Fdtd(Preprocess):
                 j00 = campe
 
         
-
+#----dipole pol（1つ目の引数）の設定----
         for dipole in self.idipoles:
-
             if dipole.pol == 'x':
-
                 self.Ex2[dipole.iz, dipole.iy, dipole.ix] = self.Ex2[dipole.iz, dipole.iy, dipole.ix] - dipole.phase* j00
-
             elif dipole.pol == 'y':
-
                 self.Ey2[dipole.iz, dipole.iy, dipole.ix] = self.Ey2[dipole.iz, dipole.iy, dipole.ix] - dipole.phase* j00
-
             elif dipole.pol == 'z':
-
                 self.Ez2[dipole.iz, dipole.iy, dipole.ix] = self.Ez2[dipole.iz, dipole.iy, dipole.ix] - dipole.phase* j00
-
             else:
-
                 print('Error at dipole_source!')
-
         
 
         self.esource[jt] = j00
-
 
 
     def normalinc_p_e(self, jt):
@@ -148,13 +138,10 @@ class Fdtd(Preprocess):
         tau = math.pi/self.omega0
 
         if self.pulse == 'pulse':
-
             t0 = 5.0*tau
 
         else:
-
             t0 = 0.0
-
             omega_env = self.omega0*env_factor
 
         
@@ -168,131 +155,86 @@ class Fdtd(Preprocess):
         camph = math.sin(self.omega0*temph)
 
         if self.pulse == 'pulse':
-
             SEx00 = math.exp(-tempe*tempe/tau/tau)*campe
-
             SHy00 = math.exp(-temph*temph/tau/tau)*camph / (self.zz0/math.sqrt(self.epsr[self.bgmater]))
 
         else:
-
             if tempe < 0.0:
-
                 SEx00 = 0.0
-
             elif tempe < math.pi/omega_env:
-
                 SEx00 = 0.5 * (1.0-math.cos(omega_env*tempe)) * campe
-
             else:
-
                 SEx00 = campe
 
-        
 
             if temph < 0.0:
-
                 SHy00 = 0.0
-
             elif temph < math.pi/omega_env:
-
                 SHy00 = 0.5*(1.0-math.cos(omega_env* temph))*camph / (self.zz0/math.sqrt(self.epsr[self.bgmater]))
-
             else:
-
                 SHy00= camph / (self.zz0/math.sqrt(self.epsr[self.bgmater]))
-
         
 
         # store source E field
-
         self.esource[jt] = SEx00
 
-        
 
         # store source E and H fields for FFT
-
         if jt%self.sampint == 0:
-
             jfft = jt//self.sampint
 
-        
 
         #   Ex development
-
         for iz in range(1, self.mzz):
-
             imater = self.isdx[iz]
-
             self.SEx2[iz] = self.SEx1[iz]*self.ce1[imater] - self.spx2[iz]*self.ce3[imater] - (self.SHy1[iz]-self.SHy1[iz-1])*self.ckez[iz]*self.ce2[imater]
 
 
 
         #   -z pml
-
         for iz in range(1, self.mz1):
-
             self.SpsiExz2m[iz] = self.SpsiExz1m[iz]*self.cbze[iz] + (self.SHy1[iz]-self.SHy1[iz-1])*self.ccze[iz]
-
             self.SEx2[iz] = self.SEx2[iz] - self.SpsiExz2m[iz]*self.ce2[self.isdx[iz]]
 
 
 
         #   +z pml
-
         for iz in range(self.mz2+ 1, self.mzz):
-
             izz = iz - self.mz2
-
             izzr = self.mzz - iz
-
             self.SpsiExz2p[izz] = self.SpsiExz1p[izz]*self.cbze[izzr] + (self.SHy1[iz]-self.SHy1[iz-1])*self.ccze[izzr]
-
             self.SEx2[iz] = self.SEx2[iz] - self.SpsiExz2p[izz]*self.ce2[self.isdx[iz]]
 
 
-
         # source compensation for E
-
         self.SEx2[self.izst] = self.SEx2[self.izst] + self.cez2[self.isdx[self.izst]]*SHy00
 
         
 
         self.SEx2[0] = 0.0
-
         self.SEx2[self.mzz] = 0.0
 
         
 
         #   Hy development
-
         for iz in range(self.mzz):
-
             self.SHy2[iz] = self.SHy1[iz] - (self.SEx2[iz+1]-self.SEx2[iz])*self.ckhz1[iz]
 
 
 
         #   -z pml
-
         for iz in range(self.mz1):
-
             self.SpsiHyz2m[iz] = self.SpsiHyz1m[iz]*self.cbzh[iz] \
-
             + (self.SEx2[iz+1]-self.SEx2[iz])*self.cczh[iz]
-
             self.SHy2[iz] = self.SHy2[iz]- self.SpsiHyz2m[iz]*self.coefh
 
 
 
         #   +z pml
-
         for iz in range(self.mz2, self.mzz):
-
             izz = iz - self.mz2
-
             izzr = self.mzz - iz- 1
-
             self.SpsiHyz2p[izz] = self.SpsiHyz1p[izz]*self.cbzh[izzr] + (self.SEx2[iz+1]-self.SEx2[iz])*self.cczh[izzr]
-
             self.SHy2[iz] = self.SHy2[iz] - self.SpsiHyz2p[izz]*self.coefh
 
 
