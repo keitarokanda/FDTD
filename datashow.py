@@ -7,12 +7,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ---
-data = 'Ex_y200_'
+data = 'Ex_y100_'
 setting = '_test'
+data_num = 2**8 #データの数
 
 #----グリッドの作成----
-x = np.arange(0, 416, 1)
-y = np.arange(0, 417, 1)
+x = np.arange(0, 216, 1)
+y = np.arange(0, 217, 1)
 x,y = np.meshgrid(x,y)
 
 #----画像の作成パート----
@@ -23,9 +24,9 @@ def data2fig(x, y, dataname):
     new_dir_path = 'fig/fig'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
-    for i in range(0, 512):
+    for i in range(0, data_num):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field_/field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
+        loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
         max_value = max(loaddata[2])
 
         fig = plt.figure()
@@ -50,7 +51,7 @@ def img2mov(dataname):
     fps = 30 #フレームレート
     width, height = 640, 480 #動画のサイズ
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
-    for i in range(0, 512):
+    for i in range(0, data_num):
         fill0num = f'{i:03}'
         read_fig = cv2.imread('fig/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
         outfile.write(read_fig)
