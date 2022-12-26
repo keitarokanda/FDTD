@@ -30,9 +30,7 @@ class Fdtd(Preprocess):
         for jt in range(self.mt):
 
             # update E-field
-
             self.sweep_isolate_e()
-
             self.sweep_boundary_e() 
 
 #----電場源のセッティング----
@@ -43,97 +41,64 @@ class Fdtd(Preprocess):
 
 
             # auxiary E-field update
-
             self.develop_pcurrent()
 
 
-
             # update H-field
-
             self.sweep_isolate_h()
-
             self.sweep_boundary_h()
 
             # H-field source injection
-
             if self.source == 'plane':
-
                 self.normalinc_p_h()
 
 
-
             # store H and E fields
-
             if (jt+1)%self.saveint == 0 and numt < self.savenum:
-
                 self.save_ehfield(numt)
-
                 numt = numt+1
-
             self.detect_efield(jt)
-
                 
 
             # update arrays
-
             self.update_field()
-
             
 
         # calculate spectra
-
         self.detect_spectra()
 
 
 #----双極子波源の設定----
     def dipole_source(self, jt):
 
-        """ Dipole source """
-
-        
+        """ Dipole source """        
 
         env_factor = 1.0/4.0
-
-        
 
         tau = math.pi/self.omega0
 
         if self.pulse == 'pulse':
-
             t0 = 5.0*tau
-
         else:
-
             t0 = 0.0
-
             omega_env = self.omega0*env_factor
 
         tempe = (jt-1)*self.dt - t0
-
         
 
         if self.pulse == 'pulse':
-
             campe = math.sin(self.omega0*tempe)
-
             j00 = math.exp(-tempe*tempe/tau/tau) * campe
 
         else:
-
             tempe2 = tempe - math.pi/omega_env
-
             campe = math.cos(self.omega0*tempe2)
 
             if tempe2 <  -math.pi/omega_env:
-
                 j00 = 0
-
             elif tempe2 < 0:
-
                 j00 = 0.5 * (1+math.cos(omega_env*tempe2)) * campe
-
             else:
-
                 j00 = campe
 
         

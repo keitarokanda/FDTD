@@ -26,11 +26,11 @@ def data2fig(x, y, dataname):
 
     for i in range(0, 512):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.loadtxt('field_/field'+setting+'/'+analyze_name+fill0num+'.txt') #データ読み込み
+        loaddata = np.abs(np.loadtxt('field_/field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
         max_value = max(loaddata[2])
 
         fig = plt.figure()
-        plt.pcolormesh(x, y, loaddata, cmap='coolwarm', shading='auto', norm=colors.LogNorm(vmin=1e-5, vmax=1e0)) #カラーメッシュの作成、カラーバーは対数表示にしている
+        plt.pcolormesh(x, y, loaddata, cmap='viridis', shading='auto', norm=colors.LogNorm(vmin=1e-5, vmax=1e0)) #カラーメッシュの作成、カラーバーは対数表示にしている
         pp = plt.colorbar(orientation='vertical') #カラーバー
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
