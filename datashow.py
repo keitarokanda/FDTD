@@ -1,6 +1,5 @@
 import glob
 import os
-from locale import normalize
 
 import cv2
 import matplotlib.colors as colors
