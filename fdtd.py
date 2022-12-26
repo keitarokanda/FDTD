@@ -18,9 +18,7 @@ class Fdtd(Preprocess):
 
 
     def sweep(self):
-
         """ Time development with CFS-PML and ADE """
-
 
 
         self.save_idv()
@@ -28,10 +26,10 @@ class Fdtd(Preprocess):
         numt = 0
 
         for jt in range(self.mt):
-
             # update E-field
             self.sweep_isolate_e()
             self.sweep_boundary_e() 
+
 
 #----電場源のセッティング----
             if self.source == 'plane':
@@ -47,6 +45,7 @@ class Fdtd(Preprocess):
             # update H-field
             self.sweep_isolate_h()
             self.sweep_boundary_h()
+
 
             # H-field source injection
             if self.source == 'plane':
@@ -82,6 +81,7 @@ class Fdtd(Preprocess):
         else:
             t0 = 0.0
             omega_env = self.omega0*env_factor
+
 
         tempe = (jt-1)*self.dt - t0
         
