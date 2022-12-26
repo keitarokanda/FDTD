@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 
 #球の半径
-    r1 = 1.0
+    r1 = 2.0
 
     Obj = namedtuple('Obj', ('shape', 'material', 'position', 'size'))
 
@@ -108,7 +108,7 @@ if __name__ == "__main__":
         )
 
 
-    r1 = 5.0  # radius of sphere
+    #r1 = 2.0  # radius of sphere
 
     Dtct = namedtuple('Dtct', ('pol', 'x', 'y', 'z'))
 
