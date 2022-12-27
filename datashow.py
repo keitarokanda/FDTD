@@ -5,6 +5,7 @@ import cv2
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 
 #----処理したいデータ---
 data = 'Ex_y100_'
@@ -15,6 +16,9 @@ data_num = 2**8 #データの数
 x = np.arange(0, 216, 1)
 y = np.arange(0, 217, 1)
 x,y = np.meshgrid(x,y)
+
+#----現在自国の取得----
+now_time = datetime.datetime.now()
 
 #----画像の作成パート----
 def data2fig(x, y, dataname):
@@ -27,7 +31,6 @@ def data2fig(x, y, dataname):
     for i in range(0, data_num):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
         loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
-        max_value = max(loaddata[2])
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='viridis', shading='auto', norm=colors.LogNorm(vmin=1e-5, vmax=1e0)) #カラーメッシュの作成、カラーバーは対数表示にしている
@@ -46,7 +49,7 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/fig'+setting+'/'+dataname+'/'+dataname+'.mp4' #作成する動画の名前
+    outfilename = 'fig/fig'+setting+'/'+dataname+'/'+now_time+'.mp4' #作成する動画の名前
     fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
     fps = 30 #フレームレート
     width, height = 640, 480 #動画のサイズ
