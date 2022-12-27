@@ -158,14 +158,14 @@ setting_log = [
     ['number of PML', mpml, 'kappamax :', kappamax, 'amax :', amax, 'mpow :', mpow], \
     ['====object setting===='], \
     ['radius of sphere [m]', r1], \
-    ['Obj'], [objs], \
-    ['====diple setting===='], [dipoles], \
+    ['Obj', objs], \
+    ['====diple setting====', dipoles], \
     ['====saving setting===='], \
     ['how many times to save result', savenum], \
     ['result saving interval', saveint], \
-    ['Fmon'], [fieldmons], \
-    ['Epsmon'], [epsmons], \
-    ['Dtct'], [detectors], \
+    ['Fmon', fieldmons], \
+    ['Epsmon', epsmons], \
+    ['Dtct', detectors], \
     ['elapsed time [sec]', time.time() - start]
     ]
 

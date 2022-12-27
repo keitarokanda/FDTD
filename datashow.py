@@ -9,7 +9,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_z100_'
-setting = '_test'
+setting = ''
 data_num = 2**8 #データの数
 
 #----グリッドの作成----
@@ -43,9 +43,9 @@ def data2fig(x, y, dataname):
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
+        print('画像変換完了')
 #画像の出力
-data2fig(x, y, data)
-print('画像変換完了')
+#data2fig(x, y, data)
 
 
 #----動画の作成パート----
@@ -64,12 +64,12 @@ def img2mov(dataname):
     print('動画変換完了')
 
 #動画の出力
-img2mov(data)
+#img2mov(data)
 
 
 #fieldのプロット作成
 def field2fig(field_name):
-    loaddata = np.loadtxt('field'+field_name+'.txt')
+    loaddata = np.loadtxt('field/'+field_name+'.txt')
 
     fig = plt.figure()
     plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto') 
