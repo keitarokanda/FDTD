@@ -1,14 +1,15 @@
 import datetime
-import glob
 import os
+from turtle import Turtle
 
 import cv2
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy as np
+from PIL import Image
 
 #----処理したいデータ---
-data = 'Ex_z100_'
+data = 'Ex_y100_'
 setting = '_test1'
 field = 'epsx_y100'
 data_num = 2**8 #データの数
@@ -44,9 +45,9 @@ def data2fig(x, y, dataname):
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
-        print('画像変換完了')
 #画像の出力
-data2fig(x, y, data)
+#data2fig(x, y, data)
+print('画像変換完了')
 
 
 #----動画の作成パート----
@@ -68,9 +69,23 @@ def img2mov(dataname):
 img2mov(data)
 
 
+def img2gif(dataname):
+    gif_animation = [] #画像を入れる箱を用意
+
+    for i in range(0, data_num):
+        fill0num = f'{i:03}'
+        fig_name = 'test/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg'
+        fig_list = Image.open(fig_name)
+        gif_animation.append(fig_list)
+
+    gif_animation[0]('test/fig'+setting+'/'+dataname+'/'+str(now_time)+'.gif', save_all = True, append_images=gif_animation[1:], optimize=True, dutarion=1000/30)
+
+#img2gif(data)
+
+
 #fieldのプロット作成
 def field2fig(field_name):
-    loaddata = np.loadtxt('test/field/'+setting+field_name+'.txt')
+    loaddata = np.loadtxt('test/field'+setting+'/'+field_name+'.txt')
 
     fig = plt.figure()
     plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto', vmin=0, vmax=1.0) 
@@ -82,7 +97,7 @@ def field2fig(field_name):
     plt.ylabel('y')
     plt.title('field setting')
 
-    fig.savefig('fig/fig'+setting+'/'+field_name+'.jpg') #画像の保存
+    fig.savefig('test/fig'+setting+'/'+field_name+'.jpg') #画像の保存
     plt.close() #作成した画像を閉じる
 #画像の出力
 field2fig(field)
