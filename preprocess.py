@@ -306,7 +306,7 @@ class Preprocess():
     def _set_param(self, courantfac):
 
         
-
+#----時間ステップの計算----
         self.dt = courantfac/ (self.cc* \
 
             math.sqrt(1.0/ self.dx/ self.dx + 1.0/ self.dy/ self.dy \
