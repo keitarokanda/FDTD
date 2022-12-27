@@ -9,7 +9,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_z100_'
-setting = '_test3'
+setting = '_test4'
 field = 'epsx_z100'
 data_num = 2**8 #データの数
 
