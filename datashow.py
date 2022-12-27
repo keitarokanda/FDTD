@@ -9,7 +9,8 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_z100_'
-setting = '_test'
+setting = '_test1'
+field = 'epsx_y100'
 data_num = 2**8 #データの数
 
 #----グリッドの作成----
@@ -25,12 +26,12 @@ def data2fig(x, y, dataname):
 
     analyze_name = dataname
 
-    new_dir_path = 'fig/fig'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
+    new_dir_path = 'test/fig'+setting+'/'+analyze_name  #画像を保存するフォルダのパス
     os.makedirs(new_dir_path, exist_ok=True) #画像を保存するフォルダを作成
 
     for i in range(0, data_num):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
+        loaddata = np.abs(np.loadtxt('test/field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='viridis', shading='auto', norm=colors.LogNorm(vmin=1e-5, vmax=1e1)) #カラーメッシュの作成、カラーバーは対数表示にしている
@@ -45,12 +46,12 @@ def data2fig(x, y, dataname):
         plt.close() #作成した画像を閉じる
         print('画像変換完了')
 #画像の出力
-#data2fig(x, y, data)
+data2fig(x, y, data)
 
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/fig'+setting+'/'+dataname+'/'+str(now_time)+'.mp4' #作成する動画の名前
+    outfilename = 'test/fig'+setting+'/'+dataname+'/'+str(now_time)+'.mp4' #作成する動画の名前
     fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
     fps = 30 #フレームレート
     width, height = 640, 480 #動画のサイズ
@@ -64,12 +65,12 @@ def img2mov(dataname):
     print('動画変換完了')
 
 #動画の出力
-#img2mov(data)
+img2mov(data)
 
 
 #fieldのプロット作成
 def field2fig(field_name):
-    loaddata = np.loadtxt('field/'+field_name+'.txt')
+    loaddata = np.loadtxt('test/field/'+setting+field_name+'.txt')
 
     fig = plt.figure()
     plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto', vmin=0, vmax=1.0) 
@@ -84,7 +85,7 @@ def field2fig(field_name):
     fig.savefig('fig/fig'+setting+'/'+field_name+'.jpg') #画像の保存
     plt.close() #作成した画像を閉じる
 #画像の出力
-field2fig('epsx_y100')
+field2fig(field)
 print('field画像作成完了')
 #aiueo
 
