@@ -101,7 +101,8 @@ class Preprocess():
         self.dy = regiony/self.my
         self.dz = regionz/self.mz
 
-        self.x0 = regionx/2 # origin of the object space
+#----物体空間の原点----
+        self.x0 = regionx/2 
         self.y0 = regiony/2
         self.z0 = regionz/2
 
@@ -193,153 +194,107 @@ class Preprocess():
 
 
         self.psiEzx1m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEyx1m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEzx2m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEyx2m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
 
         self.psiHzx1m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHyx1m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHzx2m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHyx2m = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
 
 
 
         self.psiEzx1p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEyx1p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEzx2p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiEyx2p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
 
         self.psiHzx1p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHyx1p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHzx2p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
-
         self.psiHyx2p = np.zeros((self.mzz+ 1, self.myy+ 1, mpml))
 
 
 
         self.psiExy1m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiEzy1m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiExy2m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiEzy2m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
 
         self.psiHxy1m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHzy1m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHxy2m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHzy2m = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
 
 
 
         self.psiExy1p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiEzy1p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiExy2p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiEzy2p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
 
         self.psiHxy1p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHzy1p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHxy2p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
-
         self.psiHzy2p = np.zeros((self.mzz+ 1, mpml, self.mxx+ 1))
 
 
 
         self.psiEyz1m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiExz1m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiEyz2m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiExz2m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
 
         self.psiHyz1m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHxz1m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHyz2m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHxz2m = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
 
 
 
         self.psiEyz1p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiExz1p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiEyz2p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiExz2p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
 
         self.psiHyz1p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHxz1p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHyz2p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
-
         self.psiHxz2p = np.zeros((mpml, self.myy+ 1, self.mxx+ 1))
 
 
 
         self.px2 = np.zeros((self.mxx+ 1, self.myy+ 1, self.mzz+ 1))
-
         self.py2 = np.zeros((self.mxx+ 1, self.myy+ 1, self.mzz+ 1))
-
         self.pz2 = np.zeros((self.mxx+ 1, self.myy+ 1, self.mzz+ 1))
 
 
 
         self.SEx1 = np.zeros(self.mzz+1)
-
         self.SEx2 = np.zeros(self.mzz+1)
 
         self.SHy1 = np.zeros(self.mzz)
-
         self.SHy2 = np.zeros(self.mzz)
 
 
 
         self.SpsiExz1m = np.zeros(mpml)
-
         self.SpsiExz2m = np.zeros(mpml)
 
         self.SpsiHyz1m = np.zeros(mpml)
-
         self.SpsiHyz2m = np.zeros(mpml)
 
         self.SpsiExz1p = np.zeros(mpml)
-
         self.SpsiExz2p = np.zeros(mpml)
 
         self.SpsiHyz1p = np.zeros(mpml)
-
         self.SpsiHyz2p = np.zeros(mpml)
 
         
 
         self.spx2 = np.zeros(self.mzz)
-
         self.spy2 = np.zeros(self.mzz)
-
         self.spz2 = np.zeros(self.mzz)
 
 
