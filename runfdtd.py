@@ -17,7 +17,7 @@ if __name__ == "__main__":
     grid_size = 0.1
 
     regionx = region_size  # object region
-    regiony = region_size  # object region
+    regiony = region_size # object region
     regionz = region_size  # object region
 
     dxtarget = grid_size  # dx [m]
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 #真空中にシリカの板を置く
         Obj('substrate', 'SiO2', (0, 0, r1), 3.0),
 #銀の球
-        Obj('sphere', 'vacuum', (0, 0, 0), r1)
+        Obj('sphere', 'Ag', (0, 0, 0), r1)
         )
 
 
@@ -114,8 +114,8 @@ if __name__ == "__main__":
 
     detectors = (
         Dtct('x', 0, 0, 0),
-        Dtct('x', r1 * 1.5, 0, 0),
-        Dtct('z', r1 * 1.5, 0, 0),
+        Dtct('x', r1 , 0, 0),
+        Dtct('z', r1 , 0, 0),
         Dtct('x', r1, 0, r1),
         Dtct('z', r1, 0, r1),
         )
