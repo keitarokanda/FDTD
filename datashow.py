@@ -38,7 +38,7 @@ def data2fig(x, y, dataname):
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
         plt.xlabel('x', fontsize=12)
-        plt.ylabel('y', fontsize=12)
+        plt.ylabel('z', fontsize=12)
         plt.title(data+setting)
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
