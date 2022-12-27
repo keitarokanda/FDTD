@@ -9,7 +9,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_z100_'
-setting = ''
+setting = '_test'
 data_num = 2**8 #データの数
 
 #----グリッドの作成----
@@ -72,7 +72,10 @@ def field2fig(field_name):
     loaddata = np.loadtxt('field/'+field_name+'.txt')
 
     fig = plt.figure()
-    plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto') 
+    plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto', vmin=0, vmax=1.0) 
+
+    pp = plt.colorbar(orientation='vertical') #カラーバー
+    pp.set_label('Dielectric Constant', fontname='Arial', fontsize=18) #カラーバーラベル
 
     plt.xlabel('x')
     plt.ylabel('y')
