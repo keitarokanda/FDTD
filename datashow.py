@@ -50,7 +50,7 @@ print('画像変換完了')
 
 #----動画の作成パート----
 def img2mov(dataname):
-    outfilename = 'fig/fig'+setting+'/'+dataname+'/'+now_time+'.mp4' #作成する動画の名前
+    outfilename = 'fig/fig'+setting+'/'+dataname+'/'+str(now_time)+'.mp4' #作成する動画の名前
     fourcc = cv2.VideoWriter_fourcc('M','P','4','V') #コーデックの指定
     fps = 30 #フレームレート
     width, height = 640, 480 #動画のサイズ
