@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ---
-data = 'Ex_y100_'
+data = 'Ex_z100_'
 setting = '_test6'
-field = 'epsx_y100'
+field = 'epsx_z100'
 data_num = 2**8 #データの数
 
 #----グリッドの作成----
@@ -39,7 +39,7 @@ def data2fig(x, y, dataname):
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
         plt.xlabel('x', fontsize=12)
-        plt.ylabel('y', fontsize=12)
+        plt.ylabel('z', fontsize=12)
         plt.title(data+setting+'_'+fill0num)
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
@@ -79,7 +79,7 @@ def field2fig(field_name):
     pp.set_label('Dielectric Constant', fontname='Arial', fontsize=18) #カラーバーラベル
 
     plt.xlabel('x')
-    plt.ylabel('y')
+    plt.ylabel('z')
     plt.title('field setting')
 
     fig.savefig('test/fig'+setting+'/'+field_name+'.jpg') #画像の保存
