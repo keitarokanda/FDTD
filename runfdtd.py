@@ -73,7 +73,7 @@ if __name__ == "__main__":
 #背景を真空に
         Obj('background', 'vacuum', 0, 0),
 #真空中にシリカの板を置く
-        Obj('substrate', 'vacuum', (0, 0, r1), 0),
+        Obj('substrate', 'SiO2', (0, 0, r1), 3.0),
 #銀の球
         Obj('sphere', 'vacuum', (0, 0, 0), r1)
         )
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
 #----dipoleのセッティング----
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 5.0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
