@@ -40,7 +40,7 @@ def data2fig(x, y, dataname):
 
         plt.xlabel('x', fontsize=12)
         plt.ylabel('y', fontsize=12)
-        plt.title(data+setting+fill0num)
+        plt.title(data+setting+'_'+fill0num)
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
