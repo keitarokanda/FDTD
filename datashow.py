@@ -66,6 +66,23 @@ def img2mov(dataname):
 #動画の出力
 img2mov(data)
 
+
+#fieldのプロット作成
+def field2fig(field_name):
+    loaddata = np.loadtxt('field'+field_name+'.txt')
+
+    fig = plt.figure()
+    plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto') 
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('field setting')
+
+    fig.savefig('fig/fig'+setting+'/'+field_name+'.jpg') #画像の保存
+    plt.close() #作成した画像を閉じる
+#画像の出力
+field2fig('epsx_y100')
+print('field画像作成完了')
 #aiueo
 
 
