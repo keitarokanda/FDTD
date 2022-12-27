@@ -6,7 +6,6 @@ import cv2
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image
 
 #----処理したいデータ---
 data = 'Ex_y100_'
@@ -59,7 +58,7 @@ def img2mov(dataname):
     outfile = cv2.VideoWriter(outfilename, fourcc, fps, (width, height)) #videoweiter
     for i in range(0, data_num):
         fill0num = f'{i:03}'
-        read_fig = cv2.imread('fig/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
+        read_fig = cv2.imread('test/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg') #画像の読み込み
         outfile.write(read_fig)
 
     outfile.release()
@@ -67,20 +66,6 @@ def img2mov(dataname):
 
 #動画の出力
 img2mov(data)
-
-
-def img2gif(dataname):
-    gif_animation = [] #画像を入れる箱を用意
-
-    for i in range(0, data_num):
-        fill0num = f'{i:03}'
-        fig_name = 'test/fig'+setting+'/'+dataname+'/fig'+fill0num+'.jpg'
-        fig_list = Image.open(fig_name)
-        gif_animation.append(fig_list)
-
-    gif_animation[0]('test/fig'+setting+'/'+dataname+'/'+str(now_time)+'.gif', save_all = True, append_images=gif_animation[1:], optimize=True, dutarion=1000/30)
-
-#img2gif(data)
 
 
 #fieldのプロット作成
