@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ---
-data = 'Ex_z100_'
+data_axis = 'Ez_y'
+data_number = '100_'
 setting = '_test6'
-field = 'epsx_z100'
+field = 'epsz_z100'
 data_num = 2**8 #データの数
 
 #----グリッドの作成----
-x = np.arange(0, 216, 1)
+x = np.arange(0, 217, 1)
 y = np.arange(0, 217, 1)
 x,y = np.meshgrid(x,y)
 
@@ -38,14 +39,14 @@ def data2fig(x, y, dataname):
         pp = plt.colorbar(orientation='vertical') #カラーバー
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
-        plt.xlabel('x', fontsize=12)
-        plt.ylabel('z', fontsize=12)
+        plt.xlabel('z', fontsize=12)
+        plt.ylabel('y', fontsize=12)
         plt.title(data+setting+'_'+fill0num)
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
 #画像の出力
-data2fig(x, y, data)
+data2fig(x, y, data_axis+data_number)
 print('画像変換完了')
 
 
@@ -65,7 +66,7 @@ def img2mov(dataname):
     print('動画変換完了')
 
 #動画の出力
-img2mov(data)
+#img2mov(data_axis+data_number)
 
 
 #fieldのプロット作成
