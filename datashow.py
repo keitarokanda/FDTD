@@ -1,3 +1,4 @@
+import datetime
 import glob
 import os
 
@@ -5,10 +6,9 @@ import cv2
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy as np
-import datetime
 
 #----処理したいデータ---
-data = 'Ex_y100_'
+data = 'Ex_z100_'
 setting = '_test'
 data_num = 2**8 #データの数
 
