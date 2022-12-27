@@ -79,9 +79,9 @@ if __name__ == "__main__":
         )
 
 
-
+#----dipoleのセッティング----
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 0, 2.0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
@@ -159,8 +159,7 @@ setting_log = [
     ['====object setting===='], \
     ['radius of sphere [m]', r1], \
     ['Obj'], [objs], \
-    ['====diple setting===='], \
-    [dipoles], \
+    ['====diple setting===='], [dipoles], \
     ['====saving setting===='], \
     ['how many times to save result', savenum], \
     ['result saving interval', saveint], \
