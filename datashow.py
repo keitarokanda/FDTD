@@ -9,7 +9,7 @@ import numpy as np
 
 #----処理したいデータ---
 data = 'Ex_y100_'
-setting = '_test1'
+setting = '_test2'
 field = 'epsx_y100'
 data_num = 2**8 #データの数
 
@@ -45,7 +45,7 @@ def data2fig(x, y, dataname):
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
         plt.close() #作成した画像を閉じる
 #画像の出力
-#data2fig(x, y, data)
+data2fig(x, y, data)
 print('画像変換完了')
 
 
