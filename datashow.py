@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ----
-data_axis = 'Ex_y'
+data_axis = 'Ex_z'
 data_number = '100_'
-data = data_axis+data_number
+data = str(data_axis+data_number)
 setting = '_test7'
-field = 'epsx_y100'
+field = 'epsx_z100'
 data_num = 2**9 #データの数
 
 #----グリッドの作成----
@@ -67,7 +67,7 @@ def img2mov(dataname):
     print('動画変換完了')
 
 #動画の出力
-#img2mov(data)
+img2mov(data)
 
 
 #fieldのプロット作成
