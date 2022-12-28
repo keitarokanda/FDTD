@@ -44,7 +44,7 @@ if __name__ == "__main__":
     courant_condtion = dxtarget / (3.0e8 *np.sqrt(3))
 
 #時間発展の回数
-    mt= 2**8  # must be integer power of 2
+    mt= 2**9  # must be integer power of 2
 #スペクトル計算に用いる時間波形の回数
     mfft= 2**5  # must be integer power of 2
 #スペクトル計算時の0充填をサンプリング時間の何倍行うか
@@ -73,15 +73,15 @@ if __name__ == "__main__":
 #背景を真空に
         Obj('background', 'vacuum', 0, 0),
 #真空中にシリカの板を置く
-        Obj('substrate', 'SiO2', (0, 0, r1), 3.0),
+        Obj('substrate', 'vacuum', (0, 0, r1), 3.0),
 #銀の球
-        Obj('sphere', 'Ag', (0, 0, 0), r1)
+        Obj('sphere', 'vacuum', (0, 0, 0), r1)
         )
 
 
 #----dipoleのセッティング----
     Dipole = namedtuple('Dipole', ('pol', 'phase', 'x', 'y', 'z'))
-    dipoles= (Dipole('z', 'in', 0, 0, -r1-1.0),) # phase: 'in' in-phase, 'anti' antiphase
+    dipoles= (Dipole('z', 'in', 0, 0, 0),) # phase: 'in' in-phase, 'anti' antiphase
 
 
 # ----field monitor----
