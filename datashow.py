@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ----
-data_axis = 'Ez_y'
+data_axis = 'Ex_y'
 data_number = '100_'
 data = data_axis+data_number
-setting = '_test6'
-field = 'epsz_z100'
-data_num = 2**8 #データの数
+setting = '_test7'
+field = 'epsx_y100'
+data_num = 2**9 #データの数
 
 #----グリッドの作成----
 x = np.arange(0, 217, 1)
