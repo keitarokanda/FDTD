@@ -40,8 +40,20 @@ def data2fig(x, y, dataname):
         pp = plt.colorbar(orientation='vertical') #カラーバー
         pp.set_label('Intensity', fontname='Arial', fontsize=18) #カラーバーラベル
 
-        plt.xlabel('z', fontsize=12)
-        plt.ylabel('y', fontsize=12)
+
+#軸のプロット
+        if data_axis == 'Ex_y':
+            plt.xlabel('x', fontsize=12)
+            plt.ylabel('y', fontsize=12)
+
+        elif data_axis == 'Ex_z':
+            plt.xlabel('x', fontsize=12)
+            plt.ylabel('z', fontsize=12)
+
+        elif data_axis == 'Ez_y':
+            plt.xlabel('z', fontsize=12)
+            plt.ylabel('y', fontsize=12)
+
         plt.title(data+setting+'_'+fill0num)
 
         fig.savefig(new_dir_path+'/fig'+fill0num+'.jpg') #画像の保存
@@ -80,9 +92,18 @@ def field2fig(field_name):
     pp = plt.colorbar(orientation='vertical') #カラーバー
     pp.set_label('Dielectric Constant', fontname='Arial', fontsize=18) #カラーバーラベル
 
-    plt.xlabel('x')
-    plt.ylabel('z')
-    plt.title('field setting')
+#軸のプロット
+    if data_axis == 'Ex_y':
+        plt.xlabel('x', fontsize=12)
+        plt.ylabel('y', fontsize=12)
+
+    elif data_axis == 'Ex_z':
+        plt.xlabel('x', fontsize=12)
+        plt.ylabel('z', fontsize=12)
+
+    elif data_axis == 'Ez_y':
+        plt.xlabel('z', fontsize=12)
+        plt.ylabel('y', fontsize=12)
 
     fig.savefig('test/fig'+setting+'/'+field_name+'.jpg') #画像の保存
     plt.close() #作成した画像を閉じる
