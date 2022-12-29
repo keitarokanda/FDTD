@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ----
-data_axis = 'Ex_y'  #x_y, x_z, z_y
+data_axis = 'Ez_y'  #x_y, x_z, z_y
 data_number = '100_'
 data = str(data_axis+data_number)
 setting = '_test8'
-field = 'epsx_y100'  #x_y, x_z, z_z
+field = 'epsz_z100'  #x_y, x_z, z_z
 data_num = 2**9 #データの数
 
 #----グリッドの作成----

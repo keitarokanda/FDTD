@@ -73,7 +73,7 @@ if __name__ == "__main__":
 #背景を真空に
         Obj('background', 'vacuum', 0, 0),
 #真空中にシリカの板を置く
-        Obj('substrate', 'SiO2', (0, 0, r1), 3.0),
+        Obj('slab', 'SiO2', (0, 0, r1), 3.0),
 #銀の球
         Obj('sphere', 'Ag', (0, 0, 0), r1)
         )
