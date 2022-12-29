@@ -13,8 +13,8 @@ if __name__ == "__main__":
 
 
 #----シミュレーション空間の設定----
-    region_size = 20.0
-    grid_size = 0.1
+    region_size = 30.0
+    grid_size = 0.075
 
     regionx = region_size  # object region
     regiony = region_size # object region
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     pulse = 'pulse'  # 'pulse' or 'cw' source
 
 #中心波長（真空中）[m]
-    lambda0 = 1.0  
+    lambda0 = 0.75  
 #クーラン条件(のCourant factor)
     courantfac = 0.5  
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 
 #球の半径
-    r1 = 2.0
+    r1 = 5.0
 
     Obj = namedtuple('Obj', ('shape', 'material', 'position', 'size'))
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
 #背景を真空に
         Obj('background', 'vacuum', 0, 0),
 #真空中にシリカの板を置く
-        Obj('substrate', 'SiO2', (0, 0, 0), -3.0),
+        Obj('substrate', 'SiO2', (0, 0, r1), 3.0),
 #銀の球
         Obj('sphere', 'Ag', (0, 0, 0), r1)
         )

@@ -11,7 +11,7 @@ import numpy as np
 data_axis = 'Ex_y'  #x_y, x_z, z_y
 data_number = '100_'
 data = str(data_axis+data_number)
-setting = '_test9'
+setting = '_test10'
 field = 'epsx_y100'  #x_y, x_z, z_z
 data_num = 2**9 #データの数
 
