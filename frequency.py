@@ -14,7 +14,7 @@ R_max = 30.0
 P_t = 800 #[W]
 P_min = 1e-12 #[W]
 G_t = 1.64
-f = np.array([150+i for i in range (250) ])
+f = np.arange(150, 400, 0.1)
 
 #光速
 c = 299792458 #[m/s]
@@ -27,39 +27,41 @@ throw = 1-reflection
 
 #----計算----
 #左辺
-def y1(x):
-    return x*10**6/10**(-0.091 * np.sqrt(epsilon_r1)*losstangent *R_max*x/5)
+#def y1(x):
+#    return x*10**6/10**(-0.091 * np.sqrt(epsilon_r1)*losstangent *R_max*x/5)
 
+y1 = f*10**6/10**(-0.091 * np.sqrt(epsilon_r1)*losstangent *R_max*f/5)
 #右辺
-def y2(x):
-    return \
-        P_t/P_min * \
-        (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
-        throw**2 * reflection + x*0
+#def y2(x):
+#    return \
+#        P_t/P_min * \
+#        (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
+#        throw**2 * reflection + x*0
 
-def delta(x):
-    return np.abs(y1(x)-y2(x))
+y2 = \
+     P_t/P_min * \
+    (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
+    throw**2 * reflection + f*0
 
 
-print(min(delta(f)))
 
-#print(right_hand)
+
 
 #交点の座標を取得
-idx = np.argwhere(np.sign(np.round(y1(f) - y2(f))) == 0)
+#idx = np.argwhere(np.sign(np.round(y1 - y2)) == 0)
 
 
-
+#print(f[idx])
 #交点をプロット
 #plt.plot(f[idx], y1(f[idx]), 'ms', ms=5, label='Intersection', color='green')
 
 #交点の座標をグラフに追記
-for i in idx.ravel():
-    plt.text(f[i], y1[i], '({x}, {y})'.format(x=f[i], y=y1[i]), fontsize=10)
+#for i in idx.ravel():
+#    plt.text(f[i], y1[i], '({x}, {y})'.format(x=f[i], y=y1[i]), fontsize=10)
 
 
-plt.plot(f, y1(f), color='red', label='left hand')
-plt.plot(f, y2(f), color='blue', label='right hand' )
+plt.plot(f, y1, color='red', label='left hand')
+plt.plot(f, y2, color='blue', label='right hand' )
 
 
 plt.yscale('log')
