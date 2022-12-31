@@ -14,7 +14,7 @@ R_max = 30.0
 P_t = 800 #[W]
 P_min = 1e-12 #[W]
 G_t = 1.64
-f = np.arange(150, 401, 0.1)
+f = np.array([150+i for i in range (250) ])
 
 #光速
 c = 299792458 #[m/s]
