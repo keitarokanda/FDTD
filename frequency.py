@@ -27,20 +27,12 @@ throw = 1-reflection
 
 #----計算----
 #左辺
-#def y1(x):
-#    return x*10**6/10**(-0.091 * np.sqrt(epsilon_r1)*losstangent *R_max*x/5)
-
 beta = -0.091*np.sqrt(epsilon_r1)*losstangent*R_max/5
 y1 = f*10**6/10**(beta*f)
 
 print(beta)
-#右辺
-#def y2(x):
-#    return \
-#        P_t/P_min * \
-#        (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
-#        throw**2 * reflection + x*0
 
+#右辺
 y2 = \
      P_t/P_min * \
     (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
