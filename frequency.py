@@ -14,7 +14,7 @@ R_max = 30.0
 P_t = 800 #[W]
 P_min = 1e-12 #[W]
 G_t = 1.64
-f = np.arange(0, 400, 0.1)
+f = np.arange(0, 500, 1)
 
 #光速
 c = 299792458 #[m/s]
@@ -29,8 +29,6 @@ throw = 1-reflection
 #左辺
 beta = -0.091*np.sqrt(epsilon_r1)*losstangent*R_max/5
 y1 = f*10**6/10**(beta*f)
-
-print(beta)
 
 #右辺
 y2 = \
