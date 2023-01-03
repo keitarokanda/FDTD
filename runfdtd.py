@@ -54,7 +54,7 @@ if __name__ == "__main__":
 #散乱場領域の大きさ
     msf = 3  # (>=3)
 #PMLの層数
-    mpml = 8  
+    mpml = 15  
 #PMLパラメータ
     kappamax = 100.0  
     amax = 10.0  
