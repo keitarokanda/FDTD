@@ -1,7 +1,4 @@
 # ファイル名 'runfdtd.py'
-
-
-
 import csv
 import time
 from collections import namedtuple
