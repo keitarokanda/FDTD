@@ -37,6 +37,7 @@ y2 = \
     throw**2 * reflection + f*0
 
 
+
 #delta_y = np.abs(y1[f] - y2[f])
 #print(min(delta_y))
 
@@ -52,7 +53,7 @@ plt.plot(f[idx], y1[idx], 'ms', ms=5, label='Intersection', color='green')
 #for i in idx.ravel():
 #    plt.text(f[i], y1[i], '({x}, {y})'.format(x=f[i], y=y1[i]), fontsize=10)
 
-
+print(y2)
 plt.plot(f, y1, color='red', label='left hand')
 plt.plot(f, y2, color='blue', label='right hand' )
 
