@@ -456,61 +456,41 @@ class Preprocess():
 
 #球のセッティング
     def _sphere(self, obj):
-
         """ setting sphere """
-
 
         materialid = self.name2mat[obj.material]
 
-        rr = obj.size*obj.size
+        rr = obj.size*obj.size #半径の2乗？
 
-
-        for iz in range(self.moz1, self.moz2):
-
+        for iz in range(self.moz1, self.moz2): #moz1→moz0のこと、moz2→moz1のこと？添字変わってる？
             z = (iz-self.moz1+0.5)*self.dz - self.z0 - obj.position[2]
 
             for iy in range(self.moy1, self.moy2):
-
                 y = (iy-self.moy1+0.5)*self.dy - self.y0 - obj.position[1]
 
                 for ix in range(self.mox1, self.mox2):
-
                     x = (ix-self.mox1+0.5)* self.dx - self.x0-  obj.position[0]
 
                     if x*x + y*y + z*z <= rr:
-
                         for jj in [0, 1]:
-
                             for ii in [0, 1]:
-
                                 iix = ix
-
                                 iiy = iy + ii
-
                                 iiz = iz + jj
 
                                 if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
-
                                     self.idx[iiz,iiy,iix] = materialid
-
                                 iix = ix + ii
-
                                 iiy = iy
-
                                 iiz = iz + jj
 
                                 if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
-
                                     self.idy[iiz,iiy,iix] = materialid
-
                                 iix = ix + ii
-
                                 iiy = iy + jj
-
                                 iiz = iz
 
                                 if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
-
                                     self.idz[iiz,iiy,iix] = materialid
 
 
