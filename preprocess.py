@@ -462,16 +462,16 @@ class Preprocess():
 
         rr = obj.size*obj.size #半径の2乗？
 
-        for iz in range(self.moz1, self.moz2): #moz1→moz0のこと、moz2→moz1のこと？添字変わってる？
-            z = (iz-self.moz1+0.5)*self.dz - self.z0 - obj.position[2]
+        for iz in range(self.moz1, self.moz2): #moz1→moz0のこと、moz2→moz1のこと？物体領域の端から端まで
+            z = (iz-self.moz1+0.5)*self.dz - self.z0 - obj.position[2] #z座標？
 
             for iy in range(self.moy1, self.moy2):
-                y = (iy-self.moy1+0.5)*self.dy - self.y0 - obj.position[1]
+                y = (iy-self.moy1+0.5)*self.dy - self.y0 - obj.position[1] #y座標？
 
                 for ix in range(self.mox1, self.mox2):
-                    x = (ix-self.mox1+0.5)* self.dx - self.x0-  obj.position[0]
+                    x = (ix-self.mox1+0.5)* self.dx - self.x0-  obj.position[0] #x座標？
 
-                    if x*x + y*y + z*z <= rr:
+                    if x*x + y*y + z*z <= rr: #球の中
                         for jj in [0, 1]:
                             for ii in [0, 1]:
                                 iix = ix
@@ -484,14 +484,14 @@ class Preprocess():
                                 iiy = iy
                                 iiz = iz + jj
 
-                                if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
-                                    self.idy[iiz,iiy,iix] = materialid
-                                iix = ix + ii
-                                iiy = iy + jj
-                                iiz = iz
+#                                if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
+#                                    self.idy[iiz,iiy,iix] = materialid
+#                                iix = ix + ii
+#                                iiy = iy + jj
+#                                iiz = iz
 
-                                if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
-                                    self.idz[iiz,iiy,iix] = materialid
+#                                if iix >= 0 and iix <= self.mxx and iiy >= 0 and iiy <= self.myy and iiz >= 0 and iiz <= self.mzz:
+#                                    self.idz[iiz,iiy,iix] = materialid
 
 
 #slabのセッティング
