@@ -8,16 +8,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #----処理したいデータ----
-data_axis = 'Ex_y'  #x_y, x_z, z_y
-data_number = '100_'
+data_axis = 'Ez_y'  #x_y, x_z, z_y
+data_number = '200_'
 data = str(data_axis+data_number)
-setting = '_test10'
-field = 'epsx_y100'  #x_y, x_z, z_z
+setting = '_(230104)'
+field = 'epsz_z200'  #x_y, x_z, z_z
 data_num = 2**9 #データの数
 
 #----グリッドの作成----
-x = np.arange(0, 217, 1)
-y = np.arange(0, 217, 1)
+x = np.arange(0, 431, 1)
+y = np.arange(0, 431, 1)
 x,y = np.meshgrid(x,y)
 
 #----現在自国の取得----
@@ -33,7 +33,7 @@ def data2fig(x, y, dataname):
 
     for i in range(0, data_num):
         fill0num = f'{i:03}' #数値を0埋めで3桁の文字列にする
-        loaddata = np.abs(np.loadtxt('test/field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
+        loaddata = np.abs(np.loadtxt('field_/field'+setting+'/'+analyze_name+fill0num+'.txt')) #データ読み込み
 
         fig = plt.figure()
         plt.pcolormesh(x, y, loaddata, cmap='viridis', shading='auto', norm=colors.LogNorm(vmin=1e-5, vmax=1e1)) #カラーメッシュの作成、カラーバーは対数表示にしている
@@ -84,7 +84,7 @@ img2mov(data)
 
 #fieldのプロット作成
 def field2fig(field_name):
-    loaddata = np.loadtxt('test/field'+setting+'/'+field_name+'.txt')
+    loaddata = np.loadtxt('field_/field'+setting+'/'+field_name+'.txt')
 
     fig = plt.figure()
     plt.pcolormesh(x, y, loaddata, cmap='Greys', shading='auto', vmin=0, vmax=15.0) 
