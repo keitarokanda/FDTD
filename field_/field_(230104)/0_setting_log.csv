@@ -1,0 +1,30 @@
+region size [m],30.0,30.0,30.0
+grid size [m],0.075,0.075,0.075
+number of grid,400.0,400.0,400.0
+====source setting====
+source (dipole/plane),dipole
+type (pulse/cw),pulse
+center wavelength [m],0.75
+====time setting====
+Courant factor,0.5
+time step [sec],1.25e-10
+Couran condition [sec],1.4433756729740644e-10
+interaction time,512
+mfft,32
+ectrapol,4
+total time [sec],6.4e-08
+maximum propagation distance [m],19.200000000000003
+"====MSF, PML===="
+number of MSF layer,3
+number of PML,15,kappamax :,100.0,amax :,10.0,mpow :,3
+====object setting====
+radius of sphere [m],5.0
+Obj,"(Obj(shape='background', material='vacuum', position=0, size=0), Obj(shape='substrate', material='SiO2', position=(0, 0, 5.0), size=3.0), Obj(shape='sphere', material='Ag', position=(0, 0, 0), size=5.0))"
+====diple setting====,"(Dipole(pol='z', phase='in', x=0, y=0, z=-6.0),)"
+====saving setting====
+how many times to save result,512
+result saving interval,1
+Fmon,"(512, 1, Fmon(ehfield='Ex', axis='y', position=0), Fmon(ehfield='Ex', axis='z', position=0), Fmon(ehfield='Ez', axis='y', position=0), Fmon(ehfield='Hy', axis='x', position=0))"
+Epsmon,"(Epsmon(pol='x', axis='z', position=0), Epsmon(pol='x', axis='y', position=0), Epsmon(pol='z', axis='z', position=0))"
+Dtct,"(Dtct(pol='x', x=0, y=0, z=0), Dtct(pol='x', x=5.0, y=0, z=0), Dtct(pol='z', x=5.0, y=0, z=0), Dtct(pol='x', x=5.0, y=0, z=5.0), Dtct(pol='z', x=5.0, y=0, z=5.0))"
+elapsed time [sec],36608.57976484299
