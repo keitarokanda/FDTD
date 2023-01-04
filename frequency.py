@@ -8,7 +8,7 @@ losstangent = 0.01
 RCS = 1.0
 
 #最大探査深度
-R_max = 30.0
+R_max = np.arange(10, 41, 5)
 
 #レーダーパラメータ
 P_t = 800 #[W]
@@ -21,7 +21,7 @@ c = 299792458 #[m/s]
 
 #反射係数・透過係数
 reflection = (np.sqrt(epsilon_r1) - np.sqrt(epsilon_r2))**2 / (np.sqrt(epsilon_r1) + np.sqrt(epsilon_r2))**2
-throw = 1-reflection
+through = 1-reflection
 
 
 
@@ -34,7 +34,7 @@ y1 = f*10**6/10**(beta*f)
 y2 = \
      P_t/P_min * \
     (G_t**2 * c * RCS)/((4*np.pi)**3 * R_max**4) * \
-    throw**2 * reflection + f*0
+    through**2 * reflection
 
 
 
@@ -54,8 +54,8 @@ plt.plot(f[idx], y1[idx], 'ms', ms=5, label='Intersection', color='green')
 #    plt.text(f[i], y1[i], '({x}, {y})'.format(x=f[i], y=y1[i]), fontsize=10)
 
 print(y2)
-plt.plot(f, y1, color='red', label='left hand')
-plt.plot(f, y2, color='blue', label='right hand' )
+#plt.plot(f, y1, color='red', label='left hand')
+plt.plot(R_max, y2, color='blue', label='right hand' )
 
 
 plt.yscale('log')
